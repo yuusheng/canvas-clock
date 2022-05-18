@@ -1,4 +1,4 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 一个简单的 canvas 实现的仿 session 时钟
 
 This project has been created using **webpack-cli**, you can now run
 

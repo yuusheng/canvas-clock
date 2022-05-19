@@ -9,29 +9,30 @@ const blue: IColor = {
   bigger: '#3B6DBF',
   smaller: '#2C528F',
   pointer: '#22406F',
-  shadow: '#',
+  shadow: 'rgba(70, 100, 171, 0.8)',
 }
 
 const green: IColor = {
   bigger: '#45A864',
   smaller: '#307445',
   pointer: '#204E2E',
-  shadow: '',
+  shadow: 'rgba(7, 100, 30, 0.8)',
 }
 
 const cyan: IColor = {
   bigger: '#66CFD3',
   smaller: '#37B9BD',
   pointer: '#1E6567',
-  shadow: '',
+  shadow: 'rgba(58, 140, 148, 0.8)',
 }
 
 const red: IColor = {
-  bigger: '#FF8C61',
-  smaller: '#CE6A85',
-  pointer: '#985277',
-  shadow: '',
+  bigger: '#edd0ce',
+  smaller: '#C95955',
+  pointer: '#EC3B35',
+  shadow: 'rgba(120, 52, 42, 0.8)',
 }
+
 const purple: IColor = {
   bigger: '#daccef',
   smaller: '#9768da',

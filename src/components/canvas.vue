@@ -6,13 +6,15 @@ import { initCanvas, onTime, drawClock } from '~/utils'
 const canvas = ref<HTMLCanvasElement | null>(null)
 const canvasSettings = useCanvasSettings()
 
-let ctx: CanvasRenderingContext2D
+const ctx = ref<CanvasRenderingContext2D>()
 
 onMounted(() => {
-  ctx = initCanvas(canvas.value, canvasSettings.canvasSize)
+  ctx.value = initCanvas(canvas.value, canvasSettings.canvasSize)
 
-  onTime(ctx, drawClock)
+  onTime(ctx.value, drawClock)
 })
+
+defineExpose({ ctx })
 </script>
 
 <template>

@@ -1,20 +1,24 @@
+import { useCanvas } from './store'
 import { canvasSize } from './globalVar'
-import { initCanvas, drawClock } from './components/canvas/index'
-import { onTime, countDown, timer } from './components/timer/index'
-import palette from './components/canvas/color'
+import { initCanvas, drawClock } from './components/canvas'
+import { onTime, countDown, timer } from './components/timer'
 import './static/index.css'
 import 'uno.css'
+
 import { createApp } from 'vue'
 import App from './App.vue'
+import { createPinia } from 'pinia'
 
-const app = createApp(App).mount('#app')
+const pinia = createPinia()
+const app = createApp(App).use(pinia).mount('#app')
+
+const canvasSetting = useCanvas()
+const bgColor = canvasSetting.bgColor
 
 // 初始化背景、画布
-let bgColor = palette.blue
 const canvas = <HTMLCanvasElement>document.getElementById('canvas')
 const ctx = initCanvas(canvas, canvasSize.width, canvasSize.height)
 
-console.log('1')
 // 计时部分
 onTime(ctx, drawClock)
 
@@ -32,7 +36,7 @@ startCount.addEventListener('click', () => {
     countTime = 25
   }
 
-  bgColor = palette.cyan
+  canvasSetting.changeBgColor('cyan')
   clearInterval(timer)
   countDown(ctx, countTime, drawClock)
 })

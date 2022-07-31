@@ -1,7 +1,11 @@
-import { canvasSize, circleSize } from '../../globalVar'
-import { bgColor } from '../../index'
+import { canvasSize, circleSize } from '~/globalVar'
+import { bgColor } from '~/index'
 
-export function drawClock(ctx: CanvasRenderingContext2D, min: number, sec: number) {
+export function drawClock(
+  ctx: CanvasRenderingContext2D,
+  min: number,
+  sec: number
+) {
   const labelColor = { big: '#999', small: '#d9d9d9' }
 
   ctx.save()
@@ -126,7 +130,11 @@ export function drawPointer(
   shadow?: string
 ) {
   // 时针
-  ctx.rotate(((2 * Math.PI) / 60) * minute + ((2 * Math.PI) / 60) * (sec / 60) - Math.PI / 2)
+  ctx.rotate(
+    ((2 * Math.PI) / 60) * minute +
+      ((2 * Math.PI) / 60) * (sec / 60) -
+      Math.PI / 2
+  )
 
   ctx.beginPath()
   // moveTo设置画线起点
@@ -163,7 +171,13 @@ export function drawRoundRect(
   ctx.beginPath()
   ctx.arc(x + radius, y + radius, radius, Math.PI, (Math.PI * 3) / 2)
   ctx.lineTo(width - radius + x, y)
-  ctx.arc(width - radius + x, radius + y, radius, (Math.PI * 3) / 2, Math.PI * 2)
+  ctx.arc(
+    width - radius + x,
+    radius + y,
+    radius,
+    (Math.PI * 3) / 2,
+    Math.PI * 2
+  )
   ctx.lineTo(width + x, height + y - radius)
   ctx.arc(width - radius + x, height - radius + y, radius, 0, (Math.PI * 1) / 2)
   ctx.lineTo(radius + x, height + y)

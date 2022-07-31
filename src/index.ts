@@ -4,6 +4,10 @@ import { onTime, countDown, timer } from './components/timer/index'
 import palette from './components/canvas/color'
 import './static/index.css'
 import 'uno.css'
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App).mount('#app')
 
 // 初始化背景、画布
 let bgColor = palette.blue

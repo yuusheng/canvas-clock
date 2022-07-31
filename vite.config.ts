@@ -10,7 +10,7 @@ const config = defineConfig({
   base: process.env.BASE_PATH ?? '/',
 
   plugins: [
-    // vue({ reactivityTransform: true }),
+    vue({ reactivityTransform: true }),
     Unocss({
       presets: [presetWind, presetAttributify],
     }),

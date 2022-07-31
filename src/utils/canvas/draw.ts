@@ -1,11 +1,13 @@
-import { canvasSize, circleSize } from '~/globalVar'
-import { bgColor } from '~/index'
+import { useCanvasSettings } from '~/store/canvasSettings'
 
 export function drawClock(
   ctx: CanvasRenderingContext2D,
   min: number,
   sec: number
 ) {
+  const canvasSettings = useCanvasSettings()
+  const { canvasSize, circleSize, bgColor } = canvasSettings
+
   const labelColor = { big: '#999', small: '#d9d9d9' }
 
   ctx.save()

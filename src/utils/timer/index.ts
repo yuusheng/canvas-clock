@@ -1,4 +1,4 @@
-export let timer: NodeJS.Timer
+export let timer: number
 
 export function onTime(
   ctx: CanvasRenderingContext2D,

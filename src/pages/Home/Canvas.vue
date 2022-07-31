@@ -18,7 +18,5 @@ defineExpose({ ctx })
 </script>
 
 <template>
-  <div>
-    <canvas ref="canvas"></canvas>
-  </div>
+  <canvas ref="canvas"></canvas>
 </template>

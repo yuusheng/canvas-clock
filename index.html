@@ -7,14 +7,20 @@
     <title>clock</title>
   </head>
   <body>
-    <div class="clock-section">
-      <canvas id="canvas"></canvas>
-      <div>
-        <input id="countTime" type="text" />
+    <div class="container">
+      <div class="clock-section">
+        <canvas id="canvas"></canvas>
+
+        <span class="countTime">
+          <input id="countTime" type="text" />
+          <span style="color: #555">min</span>
+        </span>
         <button id="startCount">开始计时</button>
       </div>
+
+      <div class="mission-section">right</div>
     </div>
 
-    <div class="mission-section"></div>
+    <script type="module" src="/src/index.ts"></script>
   </body>
 </html>

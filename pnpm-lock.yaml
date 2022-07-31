@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@unocss/preset-attributify': ^0.44.2
   '@unocss/preset-wind': ^0.44.2
-  '@vitejs/plugin-vue': ^2.3.3
+  '@vitejs/plugin-vue': ^3.0.1
   pinia: ^2.0.17
   prettier: ^2.6.2
   typescript: ^4.6.4
@@ -11,16 +11,18 @@ specifiers:
   vite: ^3.0.4
   vitest: ^0.20.2
   vue: ^3.2.37
+  vue-router: ^4.1.3
 
 dependencies:
   pinia: registry.npmmirror.com/pinia/2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   unocss: registry.npmmirror.com/unocss/0.45.1_vite@3.0.4
   vue: registry.npmmirror.com/vue/3.2.37
+  vue-router: registry.npmmirror.com/vue-router/4.1.3_vue@3.2.37
 
 devDependencies:
   '@unocss/preset-attributify': registry.npmmirror.com/@unocss/preset-attributify/0.44.7
   '@unocss/preset-wind': registry.npmmirror.com/@unocss/preset-wind/0.44.7
-  '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/2.3.3_vite@3.0.4+vue@3.2.37
+  '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.0.1_vite@3.0.4+vue@3.2.37
   prettier: registry.npmmirror.com/prettier/2.7.1
   typescript: registry.npmmirror.com/typescript/4.7.4
   vite: registry.npmmirror.com/vite/3.0.4
@@ -411,14 +413,14 @@ packages:
       vite: registry.npmmirror.com/vite/3.0.4
     dev: false
 
-  registry.npmmirror.com/@vitejs/plugin-vue/2.3.3_vite@3.0.4+vue@3.2.37:
-    resolution: {integrity: sha512-SmQLDyhz+6lGJhPELsBdzXGc+AcaT8stgkbiTFGpXPe8Tl1tJaBw1A6pxDqDuRsVkD8uscrkx3hA7QDOoKYtyw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vitejs/plugin-vue/-/plugin-vue-2.3.3.tgz}
-    id: registry.npmmirror.com/@vitejs/plugin-vue/2.3.3
+  registry.npmmirror.com/@vitejs/plugin-vue/3.0.1_vite@3.0.4+vue@3.2.37:
+    resolution: {integrity: sha512-Ll9JgxG7ONIz/XZv3dssfoMUDu9qAnlJ+km+pBA0teYSXzwPCIzS/e1bmwNYl5dcQGs677D21amgfYAnzMl17A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vitejs/plugin-vue/-/plugin-vue-3.0.1.tgz}
+    id: registry.npmmirror.com/@vitejs/plugin-vue/3.0.1
     name: '@vitejs/plugin-vue'
-    version: 2.3.3
-    engines: {node: '>=12.0.0'}
+    version: 3.0.1
+    engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: ^2.5.10
+      vite: ^3.0.0
       vue: ^3.2.25
     dependencies:
       vite: registry.npmmirror.com/vite/3.0.4
@@ -1643,6 +1645,18 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
+      vue: registry.npmmirror.com/vue/3.2.37
+    dev: false
+
+  registry.npmmirror.com/vue-router/4.1.3_vue@3.2.37:
+    resolution: {integrity: sha512-XvK81bcYglKiayT7/vYAg/f36ExPC4t90R/HIpzrZ5x+17BOWptXLCrEPufGgZeuq68ww4ekSIMBZY1qdUdfjA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-router/-/vue-router-4.1.3.tgz}
+    id: registry.npmmirror.com/vue-router/4.1.3
+    name: vue-router
+    version: 4.1.3
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.2.1
       vue: registry.npmmirror.com/vue/3.2.37
     dev: false
 

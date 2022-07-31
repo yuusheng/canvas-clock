@@ -3,14 +3,15 @@ import { canvasSize } from './globalVar'
 import { initCanvas, drawClock } from './components/canvas'
 import { onTime, countDown, timer } from './components/timer'
 import './static/index.css'
-import 'uno.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
+import router from './router'
+import 'uno.css'
 
 const pinia = createPinia()
-const app = createApp(App).use(pinia).mount('#app')
+const app = createApp(App).use(pinia).use(router).mount('#app')
 
 const canvasSetting = useCanvas()
 const bgColor = canvasSetting.bgColor

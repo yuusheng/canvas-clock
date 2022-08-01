@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@unocss/preset-attributify': ^0.44.2
+  '@unocss/preset-attributify': ^0.44.7
   '@unocss/preset-wind': ^0.44.2
   '@vitejs/plugin-vue': ^3.0.1
   pinia: ^2.0.17

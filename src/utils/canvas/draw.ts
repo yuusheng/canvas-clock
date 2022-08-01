@@ -5,8 +5,7 @@ export function drawClock(
   min: number,
   sec: number
 ) {
-  const canvasSettings = useCanvasSettings()
-  const { canvasSize, circleSize, bgColor } = canvasSettings
+  const { canvasSize, circleSize, bgColor } = useCanvasSettings()
 
   const labelColor = { big: '#999', small: '#d9d9d9' }
 

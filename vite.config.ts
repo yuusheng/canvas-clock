@@ -12,7 +12,8 @@ const config = defineConfig({
   plugins: [
     vue({ reactivityTransform: true }),
     Unocss({
-      presets: [presetWind, presetAttributify],
+      //@ts-ignore
+      presets: [presetAttributify(), presetWind()],
     }),
   ],
   resolve: {

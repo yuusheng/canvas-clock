@@ -4,12 +4,12 @@ import { useCanvasSettings } from '~/store'
 import { initCanvas, onTime, drawClock } from '~/utils'
 
 const canvas = ref<HTMLCanvasElement | null>(null)
-const canvasSettings = useCanvasSettings()
+const { canvasSize } = useCanvasSettings()
 
 const ctx = ref<CanvasRenderingContext2D>()
 
 onMounted(() => {
-  ctx.value = initCanvas(canvas.value, canvasSettings.canvasSize)
+  ctx.value = initCanvas(canvas.value, canvasSize)
 
   onTime(ctx.value, drawClock)
 })

@@ -1,23 +1,17 @@
 # 🚀 一个简单的 canvas 实现的仿 session 时钟
 
-This project has been created using **webpack-cli**, you can now run
+_WIP_
+
+This project has been created using **vite**, you can now run
 
 ```bash
-npm run build
+npm run dev
 ```
 
 or
 
+build
+
 ```bash
 yarn build
 ```
-
-to bundle your application
-
-run
-
-```bash
-yarn serve
-```
-
-to start serve

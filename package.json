@@ -9,7 +9,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@unocss/preset-attributify": "^0.44.2",
+    "@unocss/preset-attributify": "^0.44.7",
     "@unocss/preset-wind": "^0.44.2",
     "@vitejs/plugin-vue": "^3.0.1",
     "prettier": "^2.6.2",

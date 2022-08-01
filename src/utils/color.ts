@@ -40,7 +40,9 @@ const purple: IColor = {
   shadow: 'rgba(132, 70, 172, 0.8)',
 }
 
-export const palette = {
+export const palette: {
+  [K in PaletteType]: IColor
+} = {
   blue,
   green,
   red,

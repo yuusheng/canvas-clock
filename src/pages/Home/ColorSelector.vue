@@ -1,35 +1,13 @@
 <script setup lang="ts">
-import { useCanvasSettings } from '~/store/canvasSettings.js'
+import { useCanvasSettings } from '~/store'
 import { palette, PaletteType } from '~/utils'
 
 const { changeBgColor } = useCanvasSettings()
 
-const colorList: { color: string; tag: PaletteType }[] = [
-  {
-    tag: 'blue',
-    color: palette.blue.smaller,
-  },
-  {
-    tag: 'cyan',
-    color: palette.cyan.smaller,
-  },
-  {
-    tag: 'green',
-    color: palette.green.smaller,
-  },
-  {
-    tag: 'purple',
-    color: palette.purple.smaller,
-  },
-  {
-    tag: 'red',
-    color: palette.red.smaller,
-  },
-]
-
-function changeColor(color: PaletteType) {
-  changeBgColor(color)
-}
+const colorList = Object.keys(palette).map((v: PaletteType) => ({
+  color: palette[v].bigger,
+  tag: v,
+}))
 </script>
 
 <template>
@@ -39,13 +17,11 @@ function changeColor(color: PaletteType) {
 
   <ul list-none flex="~">
     <li
-      text-6xl
+      class="w3 h3 m-1.5 rounded-full cursor-pointer"
       v-for="color of colorList"
-      :style="`color: ${color.color}`"
-      @click="changeColor(color.tag)"
-    >
-      ·
-    </li>
+      :style="`background-color: ${color.color}`"
+      @click="changeBgColor(color.tag)"
+    ></li>
   </ul>
 </template>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useCanvasSettings } from '~/store'
-import { initCanvas, onTime, drawClock } from '~/utils'
+import { initCanvas, onTime } from '~/utils'
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { canvasSize, updateCtx } = useCanvasSettings()

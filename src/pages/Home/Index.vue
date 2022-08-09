@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, toRef, watch } from 'vue'
 import { useCanvasSettings } from '~/store'
+import { countDown } from '~/utils'
 import Canvas from './Canvas.vue'
 import ColorSelector from './ColorSelector.vue'
 import Board from './Board.vue'
-import { countDown } from '~/utils/timer/count'
 
 const bgColor = toRef(useCanvasSettings(), 'bgColor')
 

@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { onMounted, ref, toRefs } from 'vue'
+import { ref, toRef, watch } from 'vue'
 import { useCanvasSettings } from '~/store'
 import Canvas from './Canvas.vue'
 import ColorSelector from './ColorSelector.vue'
+import Board from './Board.vue'
+import { countDown } from '~/utils/timer/count'
 
-const canvas = ref()
-const ctx = ref<CanvasRenderingContext2D>()
+const bgColor = toRef(useCanvasSettings(), 'bgColor')
 
-const { bgColor, countTime } = toRefs(useCanvasSettings())
+const countTime = ref(25)
 
-function startCount() {
-  console.log('count')
-}
-
-onMounted(() => {
-  ctx.value = canvas.value.ctx
+const { changeCountTime } = useCanvasSettings()
+watch(countTime, () => {
+  changeCountTime(countTime.value)
 })
 </script>
 
@@ -23,16 +21,19 @@ onMounted(() => {
     <div flex="~ col" text-center items-center>
       <ColorSelector />
       <Canvas ref="canvas" />
+      <input type="text" v-model="countTime" />
       <button
         class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
         text="sm white"
         :style="`background-color: ${bgColor.bigger}`"
-        @click="startCount"
+        @click="countDown"
       >
         开始计时
       </button>
     </div>
 
-    <div flex-1></div>
+    <div flex-1>
+      <Board />
+    </div>
   </div>
 </template>

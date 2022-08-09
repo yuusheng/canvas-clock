@@ -6,7 +6,7 @@ import { palette, PaletteType } from '~/utils'
 const { changeBgColor, bgColor } = toRefs(useCanvasSettings())
 
 const colorList = Object.keys(palette).map((v: PaletteType) => ({
-  color: palette[v].bigger,
+  color: palette[v].smaller,
   tag: v,
 }))
 

@@ -3,6 +3,7 @@ export interface IColor {
   smaller: string
   pointer: string
   shadow: string
+  bg: string
 }
 
 const blue: IColor = {
@@ -10,6 +11,7 @@ const blue: IColor = {
   smaller: '#2C528F',
   pointer: '#22406F',
   shadow: 'rgba(70, 100, 171, 0.8)',
+  bg: 'rgba(208, 221, 241, 0.25)',
 }
 
 const green: IColor = {
@@ -17,6 +19,7 @@ const green: IColor = {
   smaller: '#307445',
   pointer: '#204E2E',
   shadow: 'rgba(7, 100, 30, 0.8)',
+  bg: 'rgba(212, 237, 220, 0.25)',
 }
 
 const cyan: IColor = {
@@ -24,6 +27,7 @@ const cyan: IColor = {
   smaller: '#37B9BD',
   pointer: '#1E6567',
   shadow: 'rgba(58, 140, 148, 0.8)',
+  bg: 'rgba(208, 240, 241, 0.25)',
 }
 
 const red: IColor = {
@@ -31,6 +35,7 @@ const red: IColor = {
   smaller: '#C95955',
   pointer: '#EC3B35',
   shadow: 'rgba(120, 52, 42, 0.8)',
+  bg: 'rgba(255, 232, 232, 0.25)',
 }
 
 const purple: IColor = {
@@ -38,6 +43,7 @@ const purple: IColor = {
   smaller: '#9768da',
   pointer: '#7c34e9',
   shadow: 'rgba(132, 70, 172, 0.8)',
+  bg: 'rgba(233, 222, 247, 0.25)',
 }
 
 export const palette: {
@@ -51,3 +57,12 @@ export const palette: {
 }
 
 export type PaletteType = 'blue' | 'green' | 'red' | 'purple' | 'cyan'
+
+export function hexToRgba(hex: string, opacity: string) {
+  let rgba = []
+  const range = hex.startsWith('#') ? [1, 7] : [0, 6]
+  for (let i = range[0]; i < range[1]; i += 2) {
+    rgba.push(parseInt('0x' + hex.slice(i, i + 2)))
+  }
+  return `rgba(${rgba.join(', ')}, ${opacity})`
+}

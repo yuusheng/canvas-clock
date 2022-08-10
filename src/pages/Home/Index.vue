@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toRef, watch } from 'vue'
+import { ref, toRef, watchEffect } from 'vue'
 import { useCanvasSettings } from '~/store'
 import { countDown } from '~/utils'
 import Canvas from './Canvas.vue'
@@ -11,14 +11,20 @@ const bgColor = toRef(useCanvasSettings(), 'bgColor')
 const countTime = ref(25)
 
 const { changeCountTime } = useCanvasSettings()
-watch(countTime, () => {
+watchEffect(() => {
   changeCountTime(countTime.value)
 })
 </script>
 
 <template>
   <div h-screen flex="~" text-center items-center justify-between>
-    <div flex="~ col" text-center items-center>
+    <div
+      h-full
+      flex="~ col"
+      text-center
+      items-center
+      :style="`background-color: ${bgColor.bg}`"
+    >
       <ColorSelector />
       <Canvas ref="canvas" />
       <input type="text" v-model="countTime" />

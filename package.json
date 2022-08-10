@@ -9,7 +9,9 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.29",
     "@unocss/preset-attributify": "^0.44.7",
+    "@unocss/preset-icons": "^0.45.5",
     "@unocss/preset-wind": "^0.44.2",
     "@vitejs/plugin-vue": "^3.0.1",
     "prettier": "^2.6.2",

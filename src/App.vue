@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Nav from './components/Nav.vue'
+import Navigator from './components/Navigator.vue'
 </script>
 
 <template>
   <div flex="~ ">
-    <Nav></Nav>
+    <Navigator></Navigator>
     <router-view></router-view>
   </div>
 </template>

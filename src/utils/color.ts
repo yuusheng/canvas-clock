@@ -7,8 +7,8 @@ export interface IColor {
 }
 
 const blue: IColor = {
-  bigger: '#3B6DBF',
-  smaller: '#2C528F',
+  bigger: '#ccd1ed',
+  smaller: '#6d80d7',
   pointer: '#22406F',
   shadow: 'rgba(70, 100, 171, 0.8)',
   bg: 'rgba(208, 221, 241, 0.25)',

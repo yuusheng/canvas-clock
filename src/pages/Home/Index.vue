@@ -1,41 +1,39 @@
 <script setup lang="ts">
-import { ref, toRef, watchEffect } from 'vue'
+import { ref, toRef } from 'vue'
 import { useCanvasSettings } from '~/store'
 import { countDown } from '~/utils'
 import Canvas from './Canvas.vue'
-import ColorSelector from './ColorSelector.vue'
 import Board from './Board.vue'
+import BaseInput from '~/components/BaseInput.vue'
+import Header from './Header.vue'
 
 const bgColor = toRef(useCanvasSettings(), 'bgColor')
 
-const countTime = ref(25)
+const countTime = ref('25')
 
 const { changeCountTime } = useCanvasSettings()
-watchEffect(() => {
-  changeCountTime(countTime.value)
-})
+// watchEffect(() => {
+//   changeCountTime(countTime.value)
+// })
 </script>
 
 <template>
-  <div h-screen flex="~" text-center items-center justify-between>
-    <div
-      h-full
-      flex="~ col"
-      text-center
-      items-center
-      :style="`background-color: ${bgColor.bg}`"
-    >
-      <ColorSelector />
-      <Canvas ref="canvas" />
-      <input type="text" v-model="countTime" />
-      <button
-        class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
-        text="sm white"
-        :style="`background-color: ${bgColor.bigger}`"
-        @click="countDown"
-      >
-        开始计时
-      </button>
+  <div h-screen w-full flex items-center>
+    <div w="45%" hfull flex :style="`background-color: ${bgColor.bg}`">
+      <div wfull myauto translate-y="-15" flex="~ col" text-center items-center>
+        <Header />
+        <Canvas ref="canvas" />
+        <BaseInput v-model="countTime" />
+
+        <button
+          class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
+          text="sm white"
+          :style="`background-color: ${bgColor.bigger}`"
+          @click="countDown"
+        >
+          开始计时
+        </button>
+      </div>
     </div>
 
     <div flex-1>

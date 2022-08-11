@@ -5,7 +5,7 @@ const router = useRouter()
 </script>
 
 <template>
-  <div py10 px3 flex="~ col" justify-between>
+  <div py10 px3 flex="~ col" bg="gray-2/50" text-gray-5 justify-between>
     <ul spacey-3 list-none>
       <li><div i-mdi-clock-outline @click="router.push('/')"></div></li>
       <li>

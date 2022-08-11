@@ -10,3 +10,12 @@ it('should', () => {
     '"rgba(124, 52, 233, 0.8)"'
   )
 })
+
+function handleAlpha(rgba: string) {
+  const regExp = /0.\d\d/g
+  return rgba.replace(regExp, '0.8')
+}
+
+it('should be 0.9', () => {
+  expect(handleAlpha('rgba(208, 221, 241, 0.25)')).toMatchInlineSnapshot('"rgba(208, 221, 241, 0.8)"')
+})

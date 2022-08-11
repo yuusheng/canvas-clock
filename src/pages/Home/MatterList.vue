@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import { useMatter } from '~/store'
+import { toRef } from 'vue'
+import { useCanvasSettings, useMatter } from '~/store'
 import { PaletteType, palette, Matter } from '~/utils'
 
-const matterList: Matter[] = [
+const emits = defineEmits(['changeSectionShow'])
+
+const { updateCurMatter, initMatterList, getMatterList } = useMatter()
+const { changeBgColor } = useCanvasSettings()
+
+let matterList: Matter[] = [
   { name: 'js', color: 'blue' },
   { name: '算法', color: 'green' },
 ]
 
-const { updateCurMatter } = useMatter()
+initMatterList(matterList)
+
+const matters = getMatterList()
 
 function toggleClick(name: string, color: PaletteType) {
   updateCurMatter({ name, color })
+  changeBgColor(color)
+  emits('changeSectionShow')
 }
 </script>
 
@@ -19,7 +29,7 @@ function toggleClick(name: string, color: PaletteType) {
     <li
       class="w-full py1 pl-30% flex items-center spacex3 rounded hover:bg-gray-1/50"
       @click="toggleClick(matter.name, matter.color)"
-      v-for="matter in matterList"
+      v-for="matter in matters"
       :key="matter.name"
     >
       <div

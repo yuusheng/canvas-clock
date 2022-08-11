@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   placeholder?: string
-  modelValue: string
+  modelValue?: string
 }>()
 
 const emits = defineEmits<{
@@ -25,6 +25,7 @@ function input(e: any) {
     outline-none
     border-none
     rounded-7
+    text-center
     bg="gray-3/30"
   />
 </template>

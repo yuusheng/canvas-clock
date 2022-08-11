@@ -1,29 +1,45 @@
 <script setup lang="ts">
-import { toRef } from 'vue'
+import { ref, toRef, watchEffect } from 'vue'
 import { useCanvasSettings, useMatter } from '~/store'
-import { palette, PaletteType } from '~/utils'
 import BaseModal from '~/components/BaseModal.vue'
 import ColorSelector from './ColorSelector.vue'
 import MatterList from './MatterList.vue'
+import BaseInput from '~/components/BaseInput.vue'
+import { PaletteType } from '~/utils'
 
 const matter = toRef(useMatter(), 'curMatter')
 const bgColor = toRef(useCanvasSettings(), 'bgColor')
-const { changeBgColor } = useCanvasSettings()
-
-const colorList = Object.keys(palette).map((v: PaletteType) => ({
-  color: palette[v].smaller,
-  tag: v,
-}))
+const { addMatter } = useMatter()
 
 let showSection = $ref(false)
-
 function changeSectionShow() {
   showSection = !showSection
 }
 
-function toggleClick(color: PaletteType) {
-  changeBgColor(color)
-  changeSectionShow()
+let newTypeModal = $ref(false)
+function toggleNewType() {
+  newTypeModal = !newTypeModal
+}
+
+let typeName = ref<string>()
+const curColor = ref<PaletteType>('blue')
+
+function changeCurColor(color: PaletteType) {
+  curColor.value = color
+}
+
+function toggleSave() {
+  addMatter({
+    name: typeName.value,
+    color: curColor.value,
+  })
+  toggleNewType()
+  reset()
+}
+
+function reset() {
+  typeName.value = ''
+  curColor.value = 'blue'
 }
 </script>
 
@@ -45,16 +61,40 @@ function toggleClick(color: PaletteType) {
 
   <BaseModal v-model="showSection" title="类别">
     <div flex="~ col" items-center>
-      <MatterList />
-      <ColorSelector />
+      <MatterList h100 @changeSectionShow="changeSectionShow" />
 
       <button
         p="x2 y2"
         w="70%"
-        class="rounded-4 bg-blue-7 text-white font-bold border-0"
+        class="rounded-4 text-white font-bold border-0"
+        :style="`background-color: ${bgColor.smaller}`"
+        @click="toggleNewType"
       >
         添加新类别
       </button>
+      <BaseModal v-model="newTypeModal" title="新类别">
+        <div flex="~ col" items-center>
+          <BaseInput v-model="typeName" placeholder="类别名称" />
+          <ColorSelector
+            :curColor="curColor"
+            @change-cur-color="changeCurColor"
+          />
+          <div wfull flex justify-between>
+            <button p="x3.5 y1.7" border-0 bg-white text-4 cursor-pointer>
+              归档
+            </button>
+            <button
+              p="x3.5 y1.7"
+              text="white 4"
+              class="border-0 rounded-4 font-bold cursor-pointer"
+              :style="`background-color: ${bgColor.smaller}`"
+              @click="toggleSave"
+            >
+              保存
+            </button>
+          </div>
+        </div>
+      </BaseModal>
     </div>
   </BaseModal>
 </template>

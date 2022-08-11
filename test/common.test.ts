@@ -17,5 +17,15 @@ function handleAlpha(rgba: string) {
 }
 
 it('should be 0.9', () => {
-  expect(handleAlpha('rgba(208, 221, 241, 0.25)')).toMatchInlineSnapshot('"rgba(208, 221, 241, 0.8)"')
+  expect(handleAlpha('rgba(208, 221, 241, 0.25)')).toMatchInlineSnapshot(
+    '"rgba(208, 221, 241, 0.8)"'
+  )
+})
+
+let map = new Map()
+map.set('a', { name: 'yuusheng' })
+map.set('b', { name: 'yiihan' })
+
+it('', () => {
+  expect(map.forEach((v) => console.log(v))).toMatchInlineSnapshot('undefined')
 })

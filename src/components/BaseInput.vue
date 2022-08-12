@@ -19,13 +19,7 @@ function input(e: any) {
     :placeholder="placeholder"
     :value="modelValue"
     @input="input"
-    h7
-    my2
-    px2
-    outline-none
-    border-none
-    rounded-7
-    text-center
+    class="h7 my2 px2 outline-none border-none rounded-7 text-center"
     bg="gray-3/30"
   />
 </template>

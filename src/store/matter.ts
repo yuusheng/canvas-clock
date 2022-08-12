@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { Matter } from '~/utils'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 export const useMatter = defineStore('matter', () => {
   const curMatter = ref<Matter>()
@@ -31,6 +31,14 @@ export const useMatter = defineStore('matter', () => {
     return computed(() => [...matterList.value.values()])
   }
 
+  onMounted(() => {
+    let matterList: Matter[] = [
+      { name: 'js', color: 'blue' },
+      { name: '算法', color: 'green' },
+    ]
+
+    initMatterList(matterList)
+  })
   return {
     curMatter,
     updateCurMatter,

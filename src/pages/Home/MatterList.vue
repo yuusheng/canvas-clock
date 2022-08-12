@@ -1,19 +1,11 @@
 <script setup lang="ts">
-import { toRef } from 'vue'
 import { useCanvasSettings, useMatter } from '~/store'
-import { PaletteType, palette, Matter } from '~/utils'
+import { PaletteType, palette } from '~/utils'
 
 const emits = defineEmits(['changeSectionShow'])
 
-const { updateCurMatter, initMatterList, getMatterList } = useMatter()
+const { updateCurMatter, getMatterList } = useMatter()
 const { changeBgColor } = useCanvasSettings()
-
-let matterList: Matter[] = [
-  { name: 'js', color: 'blue' },
-  { name: '算法', color: 'green' },
-]
-
-initMatterList(matterList)
 
 const matters = getMatterList()
 

@@ -28,7 +28,6 @@ export const useCanvasSettings = defineStore('canvasSettings', () => {
     const colorEffect = watch(bgColor, () => {
       drawClock(ctx.value, min.value, sec.value)
     })
-
     effects.push(timeEffect, colorEffect)
   })
 

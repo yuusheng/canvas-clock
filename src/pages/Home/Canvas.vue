@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { useCanvasSettings } from '~/store'
 import { initCanvas, onTime } from '~/utils'
 
@@ -12,6 +12,11 @@ onMounted(() => {
   ctx.value = initCanvas(canvas.value, canvasSize)
   updateCtx(ctx.value)
   onTime()
+})
+
+onUnmounted(() => {
+  ctx.value = null
+  canvas.value = null
 })
 </script>
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, toRef, watchEffect } from 'vue'
-import { useCanvasSettings, useMatter } from '~/store'
+import { ref, toRef } from 'vue'
 import BaseModal from '~/components/BaseModal.vue'
 import ColorSelector from './ColorSelector.vue'
 import MatterList from './MatterList.vue'
 import BaseInput from '~/components/BaseInput.vue'
+import { useCanvasSettings, useMatter } from '~/store'
 import { PaletteType } from '~/utils'
 
 const matter = toRef(useMatter(), 'curMatter')

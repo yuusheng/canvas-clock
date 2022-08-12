@@ -3,46 +3,17 @@ import ZebraStripeRect from '~/components/ZebraStripeRect.vue'
 import BaseDateRect from '~/components/BaseDateRect.vue'
 import DateSelect from './DateSelect.vue'
 import { Day } from '~/utils'
+import TimeTable from './TimeTable.vue'
+import { useTime } from '~/store'
+import { toRef } from 'vue'
 
-const dayListStatic: Day[] = [
-  '周日',
-  '周一',
-  '周二',
-  '周三',
-  '周四',
-  '周五',
-  '周六',
-]
-
-interface DayListItem {
-  today?: boolean
-  day: Day
-  date: number
-}
-function dayListGenerator() {
-  const dateNow = new Date()
-  const day = dateNow.getDay()
-  const date = dateNow.getDate()
-
-  const dayList: DayListItem[] = []
-  for (let i = 1; i <= 7; i++) {
-    let dayListItem: DayListItem = {
-      day: dayListStatic[i % 7],
-      date: date + i - day,
-    }
-
-    if (i === day) dayListItem['today'] = true
-    dayList.push(dayListItem)
-  }
-  return dayList
-}
-
-const dayList = dayListGenerator()
+const dayList = toRef(useTime(), 'dayList')
+console.log(dayList.value)
 </script>
 
 <template>
-  <main>
-    <div flex="~ col" m="t6%" justify-center items-center>
+  <main relative hfull p="t6%">
+    <div flex="~ col" justify-center items-center>
       <DateSelect />
 
       <div flex>
@@ -54,6 +25,7 @@ const dayList = dayListGenerator()
         />
       </div>
     </div>
+    <TimeTable />
     <!-- <ZebraStripeRect w12 h3 /> -->
   </main>
 </template>

@@ -18,7 +18,7 @@ const { changeCountTime } = useCanvasSettings()
 </script>
 
 <template>
-  <div h-screen w-full flex items-center>
+  <div h-screen w-full flex items-center divide="gray/30" divide-x>
     <div w="45%" hfull flex :style="`background-color: ${bgColor.bg}`">
       <div wfull myauto translate-y="-15" flex="~ col" text-center items-center>
         <Header />
@@ -36,7 +36,7 @@ const { changeCountTime } = useCanvasSettings()
       </div>
     </div>
 
-    <div flex-1>
+    <div flex-1 hfull>
       <Board />
     </div>
   </div>

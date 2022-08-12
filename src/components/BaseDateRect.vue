@@ -1,0 +1,34 @@
+<script setup lang="ts">
+import { toRef } from 'vue'
+import { useCanvasSettings } from '~/store'
+import { Day } from '~/utils'
+
+defineProps<{
+  today?: boolean
+  current?: boolean
+  day: Day
+  date: number
+}>()
+
+const color = toRef(useCanvasSettings(), 'bgColor')
+</script>
+
+<template>
+  <div flex="~ col" items-center>
+    <div
+      p="x2.5 y1"
+      flex="~ col"
+      class="m0.5 w8 h10 items-center rounded cursor-pointer"
+      :class="current ? 'bg-gray-2' : 'bg-gray1'"
+    >
+      <span font-light text-xs>{{ day || '周一' }}</span>
+      <span font-bold text-xl>{{ date || '7' }}</span>
+    </div>
+
+    <span
+      v-if="today"
+      class="w1.5 h1.5 rounded-full"
+      :style="`background-color: ${color.button}`"
+    ></span>
+  </div>
+</template>

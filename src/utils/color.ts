@@ -4,6 +4,7 @@ export interface IColor {
   pointer: string
   shadow: string
   bg: string
+  button: string
 }
 
 const blue: IColor = {
@@ -12,6 +13,7 @@ const blue: IColor = {
   pointer: '#22406F',
   shadow: 'rgba(70, 100, 171, 0.8)',
   bg: 'rgba(208, 221, 241, 0.25)',
+  button: '#354fc7',
 }
 
 const green: IColor = {
@@ -20,6 +22,7 @@ const green: IColor = {
   pointer: '#204E2E',
   shadow: 'rgba(7, 100, 30, 0.8)',
   bg: 'rgba(212, 237, 220, 0.25)',
+  button: '#57b35f',
 }
 
 const cyan: IColor = {
@@ -28,6 +31,7 @@ const cyan: IColor = {
   pointer: '#1E6567',
   shadow: 'rgba(58, 140, 148, 0.8)',
   bg: 'rgba(208, 240, 241, 0.25)',
+  button: '#4e9da6',
 }
 
 const red: IColor = {
@@ -36,6 +40,7 @@ const red: IColor = {
   pointer: '#EC3B35',
   shadow: 'rgba(120, 52, 42, 0.8)',
   bg: 'rgba(255, 232, 232, 0.25)',
+  button: '#c84e49',
 }
 
 const purple: IColor = {
@@ -44,6 +49,7 @@ const purple: IColor = {
   pointer: '#7c34e9',
   shadow: 'rgba(132, 70, 172, 0.8)',
   bg: 'rgba(233, 222, 247, 0.25)',
+  button: '#7237ce',
 }
 
 export const palette: {

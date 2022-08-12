@@ -28,7 +28,7 @@ const { changeCountTime } = useCanvasSettings()
         <button
           class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
           text="sm white"
-          :style="`background-color: ${bgColor.bigger}`"
+          :style="`background-color: ${bgColor.button}`"
           @click="countDown"
         >
           开始计时

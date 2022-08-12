@@ -67,7 +67,7 @@ function reset() {
         p="x2 y2"
         w="70%"
         class="rounded-4 text-white font-bold border-0"
-        :style="`background-color: ${bgColor.smaller}`"
+        :style="`background-color: ${bgColor.button}`"
         @click="toggleNewType"
       >
         添加新类别
@@ -87,7 +87,7 @@ function reset() {
               p="x3.5 y1.7"
               text="white 4"
               class="border-0 rounded-4 font-bold cursor-pointer"
-              :style="`background-color: ${bgColor.smaller}`"
+              :style="`background-color: ${bgColor.button}`"
               @click="toggleSave"
             >
               保存

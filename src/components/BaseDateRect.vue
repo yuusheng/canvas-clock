@@ -5,7 +5,7 @@ import { Day } from '~/utils'
 
 defineProps<{
   today?: boolean
-  current?: boolean
+  current?: number
   day: Day
   date: number
 }>()
@@ -19,7 +19,7 @@ const color = toRef(useCanvasSettings(), 'bgColor')
       p="x2.5 y1"
       flex="~ col"
       class="m0.5 w8 h10 items-center rounded cursor-pointer"
-      :class="current ? 'bg-gray-2' : 'bg-gray1'"
+      :class="current === date ? 'bg-gray-3/70' : 'bg-gray1'"
     >
       <span font-light text-xs>{{ day || '周一' }}</span>
       <span font-bold text-xl>{{ date || '7' }}</span>

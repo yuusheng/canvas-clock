@@ -1,31 +1,43 @@
 <script setup lang="ts">
-import ZebraStripeRect from '~/components/ZebraStripeRect.vue'
-import BaseDateRect from '~/components/BaseDateRect.vue'
 import DateSelect from './DateSelect.vue'
-import { Day } from '~/utils'
 import TimeTable from './TimeTable.vue'
 import { useTime } from '~/store'
-import { toRef } from 'vue'
+import { computed, onMounted, ref, toRefs } from 'vue'
 
-const dayList = toRef(useTime(), 'dayList')
-console.log(dayList.value)
+const { date } = toRefs(useTime())
+
+const current = ref()
+const curName = computed(() => {
+  if (current.value === date.value) return '今天'
+  else if (current.value < date.value)
+    return `${date.value - current.value}天前`
+  else return `${current.value - date.value}天后`
+})
+
+function updateCurrent(date: number) {
+  current.value = date
+}
+
+function preDate() {}
+
+function nextDate() {}
+
+onMounted(() => {
+  current.value = date.value
+})
 </script>
 
 <template>
   <main relative hfull p="t6%">
     <div flex="~ col" justify-center items-center>
-      <DateSelect />
-
-      <div flex>
-        <BaseDateRect
-          v-for="day of dayList"
-          :today="day?.today"
-          :date="day.date"
-          :day="day.day"
-        />
-      </div>
+      <DateSelect
+        :current="current"
+        :cur-name="curName"
+        @update-current="updateCurrent"
+        @next-date="nextDate"
+        @pre-date="preDate"
+      />
     </div>
     <TimeTable />
-    <!-- <ZebraStripeRect w12 h3 /> -->
   </main>
 </template>

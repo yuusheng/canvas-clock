@@ -33,8 +33,11 @@ export const useMatter = defineStore('matter', () => {
 
   onMounted(() => {
     let matterList: Matter[] = [
-      { name: 'js', color: 'blue' },
-      { name: '算法', color: 'green' },
+      { name: '蓝色', color: 'blue' },
+      { name: '绿色', color: 'green' },
+      { name: '红色', color: 'red' },
+      { name: '紫色', color: 'purple' },
+      { name: '青色', color: 'cyan' },
     ]
 
     initMatterList(matterList)

@@ -1,5 +1,28 @@
 <script setup lang="ts">
-defineProps<{ curName?: string }>()
+import { onMounted, toRefs } from 'vue'
+import { useTime } from '~/store'
+import BaseDateRect from '~/components/BaseDateRect.vue'
+
+defineProps<{ curName?: string; current?: number }>()
+
+const emits = defineEmits<{
+  (e: 'preDate'): void
+  (e: 'nextDate'): void
+  (e: 'updateCurrent', data: number): void
+}>()
+
+const { dayList } = toRefs(useTime())
+
+function toggleClickRect(date: number) {
+  emits('updateCurrent', date)
+}
+
+onMounted(() => {
+  console.log(JSON.stringify(dayList.value))
+  dayList.value.forEach((v) => {
+    console.log(JSON.stringify(v))
+  })
+})
 </script>
 
 <template>
@@ -8,6 +31,7 @@ defineProps<{ curName?: string }>()
       src="../../static/images/left.png"
       p="x2 y1"
       class="w4 rounded text-2xl text-center border-1 border-gray-2 cursor-pointer"
+      @click="emits('preDate')"
     />
 
     <div
@@ -15,13 +39,24 @@ defineProps<{ curName?: string }>()
       p="x20 y1"
       class="rounded text-center items-center border-1 border-gray-2"
     >
-      {{ curName || '昨天' }}
+      {{ curName || '今天' }}
     </div>
 
     <img
       src="../../static/images/right.png"
       p="x2 y1"
       class="w4 rounded text-2xl text-center border-1 border-gray-2 cursor-pointer"
+      @click="emits('nextDate')"
+    />
+  </div>
+  <div flex>
+    <BaseDateRect
+      v-for="day of dayList"
+      :today="day?.today"
+      :current="current"
+      :date="day.date"
+      :day="day.day"
+      @click="toggleClickRect(day.date)"
     />
   </div>
 </template>

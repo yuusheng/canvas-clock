@@ -18,12 +18,20 @@ function updateCurrent(date: number) {
   current.value = date
 }
 
-function preDate() {}
+function preDate() {
+  current.value -= 1
+}
 
-function nextDate() {}
+function nextDate() {
+  current.value += 1
+}
+
+function toggleToday() {
+  current.value = date.value
+}
 
 onMounted(() => {
-  current.value = date.value
+  toggleToday()
 })
 </script>
 
@@ -38,6 +46,6 @@ onMounted(() => {
         @pre-date="preDate"
       />
     </div>
-    <TimeTable />
+    <TimeTable @toggle-today="toggleToday" />
   </main>
 </template>

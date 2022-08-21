@@ -2,10 +2,18 @@
 
 _WIP_
 
-This project has been created using **vite**, you can now run
+This project has been created using
+
+- Vite
+- Vue3
+- TypeScript
+- pinia
+- electron(in progress)
+
+you can now run
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 or
@@ -13,5 +21,5 @@ or
 build
 
 ```bash
-yarn build
+pnpm run build
 ```

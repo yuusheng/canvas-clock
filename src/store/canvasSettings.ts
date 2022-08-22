@@ -18,22 +18,15 @@ export const useCanvasSettings = defineStore('canvasSettings', () => {
   const ctx = ref<CanvasRenderingContext2D>()
   const min = ref<number>()
   const sec = ref<number>()
-  let effects: WatchStopHandle[] = []
 
-  onMounted(() => {
-    const timeEffect = watchEffect(() => {
+  watch(ctx, () => {
+    if (ctx.value) {
       drawClock(ctx.value, min.value, sec.value)
-    })
-
-    const colorEffect = watch(bgColor, () => {
-      drawClock(ctx.value, min.value, sec.value)
-    })
-    effects.push(timeEffect, colorEffect)
+    }
   })
 
-  onUnmounted(() => {
-    effects.forEach((effect) => effect())
-    curTimeStopper()
+  watch(bgColor, () => {
+    drawClock(ctx.value, min.value, sec.value)
   })
 
   let curTimeStopper: WatchStopHandle

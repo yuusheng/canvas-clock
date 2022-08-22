@@ -8,6 +8,7 @@ This project has been created using
 - Vue3
 - TypeScript
 - pinia
+- Unocss
 - electron(in progress)
 
 you can now run

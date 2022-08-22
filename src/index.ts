@@ -7,3 +7,5 @@ import './static/index.css'
 
 const pinia = createPinia()
 createApp(App).use(pinia).use(router).mount('#app')
+
+// 950 * 725

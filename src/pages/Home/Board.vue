@@ -3,6 +3,7 @@ import DateSelect from './DateSelect.vue'
 import TimeTable from './TimeTable.vue'
 import { useTime } from '~/store'
 import { computed, onMounted, ref, toRefs } from 'vue'
+import MatterListTable from './MatterListTable.vue'
 
 const { date } = toRefs(useTime())
 
@@ -36,8 +37,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <main relative hfull p="t6%">
-    <div flex="~ col" justify-center items-center>
+  <main flex="~ col" relative hfull p="t6%">
+    <div flex="~ col" mb2 items-center>
       <DateSelect
         :current="current"
         :cur-name="curName"
@@ -46,6 +47,11 @@ onMounted(() => {
         @pre-date="preDate"
       />
     </div>
+
+    <div h3 wfull border="t-1 b-1 gray5/20"></div>
+
+    <MatterListTable h="83%" />
+
     <TimeTable @toggle-today="toggleToday" />
   </main>
 </template>

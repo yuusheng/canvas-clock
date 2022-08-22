@@ -17,12 +17,7 @@ function toggleClickRect(date: number) {
   emits('updateCurrent', date)
 }
 
-onMounted(() => {
-  console.log(JSON.stringify(dayList.value))
-  dayList.value.forEach((v) => {
-    console.log(JSON.stringify(v))
-  })
-})
+// onMounted(() => {})
 </script>
 
 <template>
@@ -37,7 +32,7 @@ onMounted(() => {
     <div
       flex
       p="x20 y1"
-      class="rounded text-center items-center border-1 border-gray-2"
+      class="rounded text-center items-center border-1 border-gray-2 cursor-pointer"
     >
       {{ curName || '今天' }}
     </div>
@@ -60,3 +55,7 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<!-- <style scoped>
+input[type="date"]::webkit-date
+</style> -->

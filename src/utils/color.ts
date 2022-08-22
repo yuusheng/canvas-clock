@@ -35,12 +35,12 @@ const cyan: IColor = {
 }
 
 const red: IColor = {
-  bigger: '#edd0ce',
-  smaller: '#C95955',
-  pointer: '#EC3B35',
+  bigger: '#edd1d0',
+  smaller: '#d88481',
+  pointer: '#db4943',
   shadow: 'rgba(120, 52, 42, 0.8)',
   bg: 'rgba(255, 232, 232, 0.25)',
-  button: '#c84e49',
+  button: '#c74f49',
 }
 
 const purple: IColor = {

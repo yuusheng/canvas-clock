@@ -2,6 +2,7 @@
 import { ref, toRef } from 'vue'
 import { useCanvasSettings } from '~/store'
 import { countDown } from '~/utils'
+import { mattersDB } from '~/db'
 import Canvas from './Canvas.vue'
 import Board from './Board.vue'
 import BaseInput from '~/components/BaseInput.vue'
@@ -12,9 +13,16 @@ const bgColor = toRef(useCanvasSettings(), 'bgColor')
 const countTime = ref('25')
 
 const { changeCountTime } = useCanvasSettings()
-// watchEffect(() => {
-//   changeCountTime(countTime.value)
-// })
+
+async function toggleStartCount() {
+  countDown()
+
+  mattersDB.open('test')
+  // mattersDB.add('test', { err: 'what the fuck' })
+  // let result = mattersDB.get('test', 'index', { name: 'what the fuck', id: 1 })
+  // console.log(result)
+  // mattersDB.addToStroe('test', 'value', 'value')
+}
 </script>
 
 <template>
@@ -29,7 +37,7 @@ const { changeCountTime } = useCanvasSettings()
           class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
           text="sm white"
           :style="`background-color: ${bgColor.button}`"
-          @click="countDown"
+          @click="toggleStartCount"
         >
           开始计时
         </button>

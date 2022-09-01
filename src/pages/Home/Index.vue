@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
 import { mattersDB } from '~/db'
@@ -8,6 +8,7 @@ import Board from './Board.vue'
 import BaseInput from '~/components/BaseInput.vue'
 import Header from './Header.vue'
 import { storeToRefs } from 'pinia'
+import Breathe from '~/components/Breathe.vue'
 
 const countTime = ref('25')
 
@@ -15,6 +16,9 @@ const { bgColor } = storeToRefs(useCanvasSettings())
 const { curMatter } = storeToRefs(useMatter())
 
 async function toggleStartCount() {
+  breathe.value.teleportShow = true
+
+  return
   console.log(curMatter.value)
   if (!curMatter.value.name) {
     alert('请输入目标')
@@ -28,6 +32,8 @@ async function toggleStartCount() {
     time: new Date(),
   })
 }
+
+const breathe = ref()
 </script>
 
 <template>
@@ -46,6 +52,8 @@ async function toggleStartCount() {
         >
           开始计时
         </button>
+
+        <Breathe ref="breathe" />
       </div>
     </div>
 

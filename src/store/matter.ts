@@ -1,15 +1,24 @@
 import { defineStore } from 'pinia'
 import { Matter } from '~/utils'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useMatter = defineStore('matter', () => {
-  const curMatter = ref<Matter>()
+  const curMatter = ref<Matter>({ name: '', color: 'blue' })
+  const matterList = ref<Map<string, Matter>>(new Map())
+
+  let initialMatterList: Matter[] = [
+    { name: '蓝色', color: 'blue' },
+    { name: '绿色', color: 'green' },
+    { name: '红色', color: 'red' },
+    { name: '紫色', color: 'purple' },
+    { name: '青色', color: 'cyan' },
+  ]
+
+  initMatterList(initialMatterList)
 
   function updateCurMatter(matter: Matter) {
     curMatter.value = matter
   }
-
-  const matterList = ref<Map<string, Matter>>(new Map())
 
   function initMatterList(data: Matter[]) {
     data.forEach((v) => {
@@ -31,17 +40,6 @@ export const useMatter = defineStore('matter', () => {
     return computed(() => [...matterList.value.values()])
   }
 
-  onMounted(() => {
-    let matterList: Matter[] = [
-      { name: '蓝色', color: 'blue' },
-      { name: '绿色', color: 'green' },
-      { name: '红色', color: 'red' },
-      { name: '紫色', color: 'purple' },
-      { name: '青色', color: 'cyan' },
-    ]
-
-    initMatterList(matterList)
-  })
   return {
     curMatter,
     updateCurMatter,

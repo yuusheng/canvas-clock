@@ -1,7 +1,6 @@
 import { MatterDBItems, MatterDBStorenames } from '~/utils/types'
 
-interface Option<T extends {}, U extends string> {
-  DBName: string
+interface Option<T, U> {
   version?: number
   objStores: {
     objectStoreName: U
@@ -15,24 +14,24 @@ interface Option<T extends {}, U extends string> {
   errorHandler?: (event: Event) => void
 }
 
-class DB<T extends {}, U extends string> {
+class DB<T, U extends string> {
   private useupgrad = false
   private db: IDBDatabase
   private request: IDBOpenDBRequest
 
-  constructor(option: Option<T, U>) {
-    this.initDB(option).catch((err) => {
+  constructor(dbName: string, option: Option<T, U>) {
+    this.initDB(dbName, option).catch((err) => {
       console.log(err.message)
     })
   }
 
-  public initDB(option: Option<T, U>) {
+  public initDB(dbName: string, option: Option<T, U>) {
     return new Promise<Event>((resolve, reject) => {
       if (!indexedDB) {
         reject(new Error('当前浏览器不支持index DB'))
       }
 
-      let request = indexedDB.open(option.DBName, option.version || 2)
+      let request = indexedDB.open(dbName, option.version || 2)
       this.request = request
 
       request.onerror = (event) => {
@@ -92,33 +91,43 @@ class DB<T extends {}, U extends string> {
   }
 
   public add(storeName: U, data: T) {
-    let request = this.db
-      .transaction([storeName], 'readwrite')
-      .objectStore(storeName)
-      .add(data)
+    try {
+      this.db
+        .transaction([storeName], 'readwrite')
+        .objectStore(storeName)
+        .add(data)
+    } catch (e) {
+      console.error(e.message)
+    }
   }
 
-  public get(storeName: string, value?: any, key?: string) {
-    let store = this.db
-      .transaction(storeName, 'readwrite')
-      .objectStore(storeName)
+  public get(storeName: U, value?: any, key?: string) {
+    try {
+      let store = this.db
+        .transaction(storeName, 'readwrite')
+        .objectStore(storeName)
 
-    let request = key ? store.index(key || 'id').get(value) : store.get(value)
+      let request = key ? store.index(key || 'id').get(value) : store.get(value)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
-  public update(storeName: string) {}
+  public update(storeName: U) {}
 }
 
-export const mattersDB = new DB<MatterDBItems, MatterDBStorenames>({
-  DBName: 'mattersDb',
-  objStores: [
-    {
-      objectStoreName: 'matters',
-      objectStoreIndex: [
-        { name: 'name', keyPath: 'name' },
-        { name: 'time', keyPath: 'time' },
-        { name: 'color', keyPath: 'color' },
-      ],
-    },
-  ],
-})
+export const mattersDB = new DB<MatterDBItems, MatterDBStorenames>(
+  'mattersDB',
+  {
+    objStores: [
+      {
+        objectStoreName: 'matters',
+        objectStoreIndex: [
+          { name: 'name', keyPath: 'name' },
+          { name: 'time', keyPath: 'time' },
+          { name: 'color', keyPath: 'color' },
+        ],
+      },
+    ],
+  }
+)

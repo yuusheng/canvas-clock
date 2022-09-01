@@ -1,27 +1,32 @@
 <script setup lang="ts">
-import { ref, toRef } from 'vue'
-import { useCanvasSettings } from '~/store'
+import { ref } from 'vue'
+import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
 import { mattersDB } from '~/db'
 import Canvas from './Canvas.vue'
 import Board from './Board.vue'
 import BaseInput from '~/components/BaseInput.vue'
 import Header from './Header.vue'
-
-const bgColor = toRef(useCanvasSettings(), 'bgColor')
+import { storeToRefs } from 'pinia'
 
 const countTime = ref('25')
 
-const { changeCountTime } = useCanvasSettings()
+const { bgColor } = storeToRefs(useCanvasSettings())
+const { curMatter } = storeToRefs(useMatter())
 
 async function toggleStartCount() {
+  console.log(curMatter.value)
+  if (!curMatter.value.name) {
+    alert('请输入目标')
+    return
+  }
   countDown()
 
-  mattersDB.open('test')
-  // mattersDB.add('test', { err: 'what the fuck' })
-  // let result = mattersDB.get('test', 'index', { name: 'what the fuck', id: 1 })
-  // console.log(result)
-  // mattersDB.addToStroe('test', 'value', 'value')
+  mattersDB.add('matters', {
+    name: curMatter.value.name,
+    color: bgColor.value.button,
+    time: new Date(),
+  })
 }
 </script>
 

@@ -15,7 +15,10 @@ const { bgColor } = storeToRefs(useCanvasSettings())
 
 <template>
   <div h-screen w-full flex items-center divide="gray/30" divide-x>
-    <div w="45%" hfull flex :style="`background-color: ${bgColor.bg}`">
+    <div
+      class="w-full md-w-45% hfull flex"
+      :style="`background-color: ${bgColor.bg}`"
+    >
       <div wfull myauto translate-y="-15" flex="~ col" text-center items-center>
         <Header />
         <Canvas ref="canvas" />
@@ -25,7 +28,7 @@ const { bgColor } = storeToRefs(useCanvasSettings())
       </div>
     </div>
 
-    <div flex-1 hfull>
+    <div hidden md-block flex-1 hfull>
       <Board />
     </div>
   </div>

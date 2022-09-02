@@ -4,7 +4,7 @@ import { useCanvasSettings } from '~/store'
 
 const bgColor = toRef(useCanvasSettings(), 'bgColor')
 
-const teleportShow = ref(true)
+const teleportShow = ref(false)
 watchEffect(() => {
   if (teleportShow.value === true) {
     setTimeout(() => {

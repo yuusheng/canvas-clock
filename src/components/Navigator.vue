@@ -5,7 +5,15 @@ const router = useRouter()
 </script>
 
 <template>
-  <nav py10 px3 flex="~ col" bg="gray-2/50" text-gray-5 justify-between>
+  <nav
+    py10
+    px3
+    hidden
+    md-flex="~ col"
+    bg="gray-2/50"
+    text-gray-5
+    justify-between
+  >
     <ul spacey-3 list-none>
       <li><div i-mdi-clock-outline @click="router.push('/')"></div></li>
       <li>

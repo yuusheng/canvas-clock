@@ -5,13 +5,20 @@ import { useCanvasSettings } from '~/store'
 const bgColor = toRef(useCanvasSettings(), 'bgColor')
 
 const teleportShow = ref(false)
+let timeout: number
 watchEffect(() => {
   if (teleportShow.value === true) {
-    setTimeout(() => {
+    timeout && clearTimeout(timeout)
+    timeout = setTimeout(() => {
       teleportShow.value = false
     }, 4500)
   }
 })
+
+function toggleCancelBreathe() {
+  clearTimeout(timeout)
+  teleportShow.value = false
+}
 
 defineExpose({ teleportShow })
 </script>
@@ -35,7 +42,7 @@ defineExpose({ teleportShow })
           cursor-pointer
           class="hover:bg-white"
           :style="`background-color: ${bgColor.smaller}`"
-          @click="teleportShow = false"
+          @click="toggleCancelBreathe"
         >
           跳过呼吸
         </button>

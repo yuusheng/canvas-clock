@@ -1,39 +1,16 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useCanvasSettings, useMatter } from '~/store'
-import { countDown } from '~/utils'
-import { mattersDB } from '~/db'
+import { ref } from 'vue'
+import { useCanvasSettings } from '~/store'
 import Canvas from './Canvas.vue'
 import Board from './Board.vue'
 import BaseInput from '~/components/BaseInput.vue'
 import Header from './Header.vue'
 import { storeToRefs } from 'pinia'
-import Breathe from '~/components/Breathe.vue'
+import Startup from './Startup.vue'
 
 const countTime = ref('25')
 
 const { bgColor } = storeToRefs(useCanvasSettings())
-const { curMatter } = storeToRefs(useMatter())
-
-async function toggleStartCount() {
-  breathe.value.teleportShow = true
-
-  return
-  console.log(curMatter.value)
-  if (!curMatter.value.name) {
-    alert('请输入目标')
-    return
-  }
-  countDown()
-
-  mattersDB.add('matters', {
-    name: curMatter.value.name,
-    color: bgColor.value.button,
-    time: new Date(),
-  })
-}
-
-const breathe = ref()
 </script>
 
 <template>
@@ -44,16 +21,7 @@ const breathe = ref()
         <Canvas ref="canvas" />
         <BaseInput v-model="countTime" />
 
-        <button
-          class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
-          text="sm white"
-          :style="`background-color: ${bgColor.button}`"
-          @click="toggleStartCount"
-        >
-          开始计时
-        </button>
-
-        <Breathe ref="breathe" />
+        <Startup />
       </div>
     </div>
 

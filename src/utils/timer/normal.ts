@@ -14,7 +14,7 @@ export function onTime() {
 
   updateTime(min, sec)
 
-  onUnmounted(() => {
-    clearInterval(interval)
-  })
+  // onUnmounted(() => {
+  //   clearInterval(interval)
+  // })
 }

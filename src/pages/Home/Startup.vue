@@ -11,15 +11,15 @@ const { bgColor } = storeToRefs(useCanvasSettings())
 const { curMatter } = storeToRefs(useMatter())
 
 async function clickStartCount() {
-  breathe.value.teleportShow = true
+  // breathe.value.teleportShow = true
   toggleStartCount()
+  countDown()
   return
   console.log(curMatter.value)
   if (!curMatter.value.name) {
     alert('请输入目标')
     return
   }
-  countDown()
 
   mattersDB.add('matters', {
     name: curMatter.value.name,
@@ -47,7 +47,7 @@ const startCount = ref(false)
     开始计时
   </button>
 
-  <CountingButtons v-if="startCount" />
+  <CountingButtons @toggle-start-count="toggleStartCount" v-if="startCount" />
 
   <Breathe ref="breathe" />
 </template>

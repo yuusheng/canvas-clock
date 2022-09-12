@@ -3,10 +3,28 @@ import CountingButton from './CountingButton.vue'
 import pause from '~/static/images/pause-icon.png'
 import start from '~/static/images/start-icon.png'
 import stop from '~/static/images/stop-icon.png'
+import {
+  continueCountDown,
+  onTime,
+  stopAllSideEffect,
+  stopCountDown,
+} from '~/utils'
 
-function clickStop() {}
-function clickPause() {}
-function clickStart() {}
+const emits = defineEmits<{
+  (e: 'toggleStartCount'): void
+}>()
+
+function clickStop() {
+  onTime()
+  stopAllSideEffect()
+  emits('toggleStartCount')
+}
+function clickPause() {
+  stopCountDown()
+}
+function clickStart() {
+  continueCountDown()
+}
 </script>
 
 <template>

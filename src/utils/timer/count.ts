@@ -1,12 +1,33 @@
-import { computed, ref, watch, WatchStopHandle } from 'vue'
+import { computed, ref, watch, watchEffect, WatchStopHandle } from 'vue'
 import { useCanvasSettings } from '~/store'
 
 let interval: number
 let progressStop: WatchStopHandle
+let leftTime: number
+let endTime: number
+
+function updateEndTime(curEndTime: number) {
+  endTime = curEndTime
+  console.log(`[updateEndTime]:${curEndTime}`)
+}
 
 export function countDown() {
-  const { updateTime, countTime } = useCanvasSettings()
-  const endTime = Date.now() + countTime * 60 * 1000
+  const { countTime } = useCanvasSettings()
+  updateEndTime(Date.now() + countTime * 60 * 1000)
+  setupTime()
+}
+
+export function stopCountDown() {
+  leftTime = endTime - Date.now()
+  stopAllSideEffect()
+}
+
+export function continueCountDown() {
+  updateEndTime(leftTime + Date.now() - 1000)
+  setupTime()
+}
+
+function setupTime() {
   const time = ref(endTime - Date.now())
   interval = setInterval(() => {
     time.value = endTime - Date.now()
@@ -16,9 +37,13 @@ export function countDown() {
 
   progressStop = watch([min, sec], () => {
     if (min.value === 0 && sec.value === 0) {
-      clearInterval(interval)
-      progressStop()
+      stopAllSideEffect()
     }
   })
-  updateTime(min, sec)
+  useCanvasSettings().updateTime(min, sec)
+}
+
+export function stopAllSideEffect() {
+  interval && clearInterval(interval)
+  progressStop && progressStop()
 }

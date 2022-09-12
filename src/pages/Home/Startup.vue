@@ -5,13 +5,14 @@ import { ref } from 'vue'
 import { mattersDB } from '~/db'
 import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
+import CountingButtons from './CountingButtons.vue'
 
 const { bgColor } = storeToRefs(useCanvasSettings())
 const { curMatter } = storeToRefs(useMatter())
 
-async function toggleStartCount() {
+async function clickStartCount() {
   breathe.value.teleportShow = true
-
+  toggleStartCount()
   return
   console.log(curMatter.value)
   if (!curMatter.value.name) {
@@ -27,7 +28,12 @@ async function toggleStartCount() {
   })
 }
 
+function toggleStartCount() {
+  startCount.value = !startCount.value
+}
+
 const breathe = ref()
+const startCount = ref(false)
 </script>
 
 <template>
@@ -35,10 +41,13 @@ const breathe = ref()
     class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
     text="sm white"
     :style="`background-color: ${bgColor.button}`"
-    @click="toggleStartCount"
+    @click="clickStartCount"
+    v-if="!startCount"
   >
     开始计时
   </button>
+
+  <CountingButtons v-if="startCount" />
 
   <Breathe ref="breathe" />
 </template>

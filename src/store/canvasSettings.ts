@@ -1,4 +1,4 @@
-import { Ref, ref, watch, watchEffect, WatchStopHandle } from 'vue'
+import { computed, Ref, ref, watch, watchEffect, WatchStopHandle } from 'vue'
 import { defineStore } from 'pinia'
 import { drawClock, palette, PaletteType } from '~/utils'
 
@@ -10,6 +10,7 @@ export const useCanvasSettings = defineStore('canvasSettings', () => {
   const ctx = ref<CanvasRenderingContext2D>()
   const min = ref<number>()
   const sec = ref<number>()
+  const buttonColor = computed(() => 'background-color:' + bgColor.value.button)
 
   watch([min, sec, bgColor, ctx], () => {
     if (ctx.value) {
@@ -44,6 +45,7 @@ export const useCanvasSettings = defineStore('canvasSettings', () => {
     canvasSize,
     circleSize,
     bgColor,
+    buttonColor,
     countTime,
     ctx,
     min,

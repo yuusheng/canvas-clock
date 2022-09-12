@@ -7,9 +7,7 @@ defineProps<{
   clickEvent: () => void
 }>()
 
-const bgColor = toRef(useCanvasSettings(), 'bgColor')
-
-const buttonColor = computed(() => 'background-color:' + bgColor.value.button)
+const buttonColor = toRef(useCanvasSettings(), 'buttonColor')
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import { toRef } from 'vue'
 import { useCanvasSettings } from '~/store'
 
-const bgColor = toRef(useCanvasSettings(), 'bgColor')
+const buttonColor = toRef(useCanvasSettings(), 'buttonColor')
 
 const emits = defineEmits<{
   (e: 'toggleToday'): void
@@ -15,16 +15,16 @@ const emits = defineEmits<{
   >
     <button
       text="white 4"
-      class="w16 h10 rounded-5 border-0 cursor-pointer font-600"
-      :style="`background-color: ${bgColor.button}`"
+      class="w16 h10 rounded-5 border-0 cursor-pointer font-600 hover:op-90"
+      :style="buttonColor"
       @click="emits('toggleToday')"
     >
       今天
     </button>
     <button
       text="white 4xl"
-      class="w12 h12 rounded-full border-0 cursor-pointer"
-      :style="`background-color: ${bgColor.button}`"
+      class="w12 h12 rounded-full border-0 cursor-pointer hover:op-90"
+      :style="buttonColor"
     >
       +
     </button>

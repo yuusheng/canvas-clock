@@ -14,6 +14,7 @@ async function clickStartCount() {
   breathe.value.teleportShow = true
 
   const teleportShowWatchStoper = watchEffect(() => {
+    console.log(`[breathe ${breathe.value.teleportShow ? 'open' : 'close'}]`)
     if (breathe.value.teleportShow === false) {
       countDown()
       toggleStartCount()
@@ -35,26 +36,28 @@ async function clickStartCount() {
 }
 
 function toggleStartCount() {
-  startCount.value = !startCount.value
+  counting.value = !counting.value
 }
 
 const breathe = ref()
-const startCount = ref(false)
+const counting = ref(false)
 const bgStyle = computed(() => `background-color: ${bgColor.value.button}`)
 </script>
 
 <template>
-  <button
-    class="m2 w32 h8 border-0 rounded-4 cursor-pointer hover:op-90"
-    text="sm white"
-    :style="bgStyle"
-    @click="clickStartCount"
-    v-if="!startCount"
-  >
-    开始计时
-  </button>
+  <div h15>
+    <button
+      class="m2 w32 h8 border-0 rounded-4 cursor-pointer hover:op-90"
+      text="sm white"
+      :style="bgStyle"
+      @click="clickStartCount"
+      v-if="!counting"
+    >
+      开始计时
+    </button>
 
-  <CountingButtons @toggle-start-count="toggleStartCount" v-if="startCount" />
+    <CountingButtons @toggle-start-count="toggleStartCount" v-else />
+  </div>
 
   <Breathe ref="breathe" />
 </template>

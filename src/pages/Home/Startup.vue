@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Breathe from '~/components/Breathe.vue'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { mattersDB } from '~/db'
 import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
@@ -11,9 +11,15 @@ const { bgColor } = storeToRefs(useCanvasSettings())
 const { curMatter } = storeToRefs(useMatter())
 
 async function clickStartCount() {
-  // breathe.value.teleportShow = true
-  toggleStartCount()
-  countDown()
+  breathe.value.teleportShow = true
+
+  const teleportShowWatchStoper = watchEffect(() => {
+    if (breathe.value.teleportShow === false) {
+      countDown()
+      toggleStartCount()
+      teleportShowWatchStoper()
+    }
+  })
   return
   console.log(curMatter.value)
   if (!curMatter.value.name) {

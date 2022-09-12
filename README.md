@@ -9,6 +9,7 @@ This project has been created using
 - TypeScript
 - pinia
 - Unocss
+- IndexedDB(in progress)
 - electron(in progress)
 
 you can now run

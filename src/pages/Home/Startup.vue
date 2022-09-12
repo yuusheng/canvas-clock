@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Breathe from '~/components/Breathe.vue'
 import { storeToRefs } from 'pinia'
-import { ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { mattersDB } from '~/db'
 import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
@@ -40,13 +40,14 @@ function toggleStartCount() {
 
 const breathe = ref()
 const startCount = ref(false)
+const bgStyle = computed(() => `background-color: ${bgColor.value.button}`)
 </script>
 
 <template>
   <button
-    class="m2 w32 h8 border-0 rounded-4 cursor-pointer"
+    class="m2 w32 h8 border-0 rounded-4 cursor-pointer hover:op-90"
     text="sm white"
-    :style="`background-color: ${bgColor.button}`"
+    :style="bgStyle"
     @click="clickStartCount"
     v-if="!startCount"
   >

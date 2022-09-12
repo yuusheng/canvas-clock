@@ -15,7 +15,7 @@ const buttonColor = computed(() => 'background-color:' + bgColor.value.button)
 <template>
   <button
     :style="buttonColor"
-    class="w10 h10 rounded-full flex items-center justify-center border-0 cursor-pointer hover:op-90"
+    class="rounded-full flex items-center justify-center border-0 cursor-pointer hover:op-90"
     @click="clickEvent"
   >
     <img h4 w4 :src="`${bgImgUrl}`" alt="" />

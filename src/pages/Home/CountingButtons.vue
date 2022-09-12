@@ -28,9 +28,9 @@ function clickStart() {
 </script>
 
 <template>
-  <div flex space-x-4 translate-y-6>
-    <CountingButton :bg-img-url="pause" :click-event="clickPause" />
-    <CountingButton :bg-img-url="stop" :click-event="clickStop" />
-    <CountingButton :bg-img-url="start" :click-event="clickStart" />
+  <div flex space-x5 translate-y-3 items-center>
+    <CountingButton w10 h10 :bg-img-url="pause" :click-event="clickPause" />
+    <CountingButton w12 h12 :bg-img-url="stop" :click-event="clickStop" />
+    <CountingButton w10 h10 :bg-img-url="start" :click-event="clickStart" />
   </div>
 </template>

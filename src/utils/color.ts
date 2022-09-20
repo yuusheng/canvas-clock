@@ -52,9 +52,7 @@ const purple: IColor = {
   button: '#7237ce',
 }
 
-export const palette: {
-  [K in PaletteType]: IColor
-} = {
+export const palette = {
   blue,
   green,
   red,
@@ -62,7 +60,7 @@ export const palette: {
   cyan,
 }
 
-export type PaletteType = 'blue' | 'green' | 'red' | 'purple' | 'cyan'
+export type PaletteType = keyof typeof palette
 
 export function hexToRgba(hex: string, opacity: string) {
   let rgba = []

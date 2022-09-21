@@ -9,8 +9,8 @@ This project has been created using
 - TypeScript
 - pinia
 - Unocss
-- IndexedDB(in progress)
-- electron(in progress)
+- IndexedDB(_WIP_)
+- electron(_WIP_)
 
 you can now run
 

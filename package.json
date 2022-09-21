@@ -1,13 +1,14 @@
 {
   "name": "canvas-clock",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.ts",
   "license": "MIT",
   "homepage": "https://canvas-clock.vercel.app/#/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "vitest"
+    "test": "vitest",
+    "release": "bumpp package.json"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.29",
@@ -15,6 +16,7 @@
     "@unocss/preset-icons": "^0.45.5",
     "@unocss/preset-wind": "^0.44.2",
     "@vitejs/plugin-vue": "^3.0.1",
+    "bumpp": "^8.2.1",
     "prettier": "^2.6.2",
     "typescript": "^4.6.4",
     "vite": "^3.0.4",

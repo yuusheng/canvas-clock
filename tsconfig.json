@@ -9,6 +9,7 @@
     "target": "ESNext",
     "jsx": "preserve",
     "allowJs": true,
+    "keyofStringsOnly": true,
     "paths": {
       "~/*": ["src/*"]
     }

@@ -1,19 +1,23 @@
-interface ObjStore<T> {
-  objectStoreName: T
+interface ObjStore<T, P extends keyof T> {
+  objectStoreName: P
   objectStoreOptions?: IDBObjectStoreParameters
   objectStoreIndex?: {
-    name: string
+    name: T[P][keyof T[P]]
     keyPath: string | Iterable<string>
     options?: IDBIndexParameters
   }[]
 }
 
 interface Option<T> {
-  objStores: ObjStore<T>[]
+  objStores: ObjStore<T, keyof T>[]
   errorHandler?: (event: Event) => void
 }
 
-class DB<T extends string> {
+export type DBStores<T> = {
+  [key in keyof T]: T[key]
+}
+
+class DB<T> {
   private useupgrad = false
   private db: IDBDatabase
   private curVersion = 1
@@ -30,7 +34,7 @@ class DB<T extends string> {
     return this
   }
 
-  public createStore(store: ObjStore<T>[] | ObjStore<T>) {
+  public createStore(store: ObjStore<T, keyof T>[] | ObjStore<T, keyof T>) {
     console.log('[indexedDB] create store')
     const promise = Array.isArray(store)
       ? this.openIndexedDB(store)
@@ -40,7 +44,7 @@ class DB<T extends string> {
     return this
   }
 
-  public add(storeName: T, data: Record<string, any>) {
+  public add(storeName: keyof T, data: T[keyof T]) {
     this.openIndexedDB().then((db) => {
       const store = db
         .transaction(storeName, 'readwrite')
@@ -50,7 +54,7 @@ class DB<T extends string> {
     return this
   }
 
-  public get(storeName: T, index: string, value: string) {
+  public get(storeName: keyof T, index: string, value: string) {
     return new Promise((resolve, reject) => {
       this.openIndexedDB().then((db) => {
         const indexs = db
@@ -71,12 +75,14 @@ class DB<T extends string> {
     // let request =  store.index(key || 'id').get(value)
   }
 
-  public update(storeName: T) {}
+  public update(storeName: keyof T) {}
 
   private openIndexedDB(): Promise<IDBDatabase>
-  private openIndexedDB(option: Option<T> | ObjStore<T>[]): Promise<Event>
+  private openIndexedDB(
+    option: Option<T> | ObjStore<T, keyof T>[]
+  ): Promise<Event>
 
-  private openIndexedDB(option?: Option<T> | ObjStore<T>[]) {
+  private openIndexedDB(option?: Option<T> | ObjStore<T, keyof T>[]) {
     if (!option) return this.open()
 
     let isOption = (props: any): props is Option<T> =>
@@ -160,10 +166,10 @@ class DB<T extends string> {
   }
 }
 
-export function createDB<T extends string>(name: string, option: Option<T>) {
+export function createDB<U>(name: string, option: Option<U>) {
   if (!indexedDB) {
     alert('当前浏览器不支持indexedDB，请更换浏览器重试')
     return null
   }
-  return new DB(name, option)
+  return new DB<U>(name, option)
 }

@@ -45,13 +45,21 @@ class DB<T> {
   }
 
   public add(storeName: keyof T, data: T[keyof T]) {
-    this.openIndexedDB().then((db) => {
-      const store = db
-        .transaction(storeName, 'readwrite')
-        .objectStore(storeName)
-      store.add(data)
+    return new Promise((resolve, reject) => {
+      this.openIndexedDB().then((db) => {
+        const store = db
+          .transaction(storeName, 'readwrite')
+          .objectStore(storeName)
+        const request = store.add(data)
+
+        request.onerror = (e) => {
+          reject((e.target as any).message)
+        }
+        request.onsuccess = (e) => {
+          resolve((e.target as any).result)
+        }
+      })
     })
-    return this
   }
 
   public get(storeName: keyof T, index: string, value: string) {

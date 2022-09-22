@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vitest",
-    "release": "bumpp package.json"
+    "release": "nr build && bumpp package.json"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.29",

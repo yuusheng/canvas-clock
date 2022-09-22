@@ -1,5 +1,5 @@
 import { PaletteType } from '~/utils'
-import { createDB } from './db'
+import { createDB } from '../db'
 
 export type MatterDBStorenames = keyof MatterDBStores
 
@@ -8,10 +8,7 @@ export interface MatterDBStores {
     name: string
     color: PaletteType
     time: Date
-  }
-  test: {
-    name: string
-    bb: string
+    duration: number
   }
 }
 

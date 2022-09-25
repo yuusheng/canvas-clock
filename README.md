@@ -1,4 +1,4 @@
-# 🚀 A simple canvas clock inspired by session
+# 🚀 A simple canvas clock inspired by [_session_](https://www.stayinsession.com/)
 
 _WIP_
 

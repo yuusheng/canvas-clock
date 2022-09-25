@@ -8,7 +8,7 @@ export interface MatterDBStores {
     name: string
     color: PaletteType
     time: Date
-    duration: number
+    duration?: number
   }
 }
 

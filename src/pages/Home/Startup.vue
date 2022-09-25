@@ -2,7 +2,7 @@
 import Breathe from '~/components/Breathe.vue'
 import { storeToRefs } from 'pinia'
 import { computed, ref, watchEffect } from 'vue'
-import { mattersDB } from '~/db'
+import { addNewMatter, mattersDB } from '~/db'
 import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
 import CountingButtons from './CountingButtons.vue'
@@ -22,18 +22,13 @@ async function clickStartCount() {
     }
   })
 
+  await addNewMatter(curMatter.value.name || '目标', curMatter.value.color)
   return
   console.log(curMatter.value)
   if (!curMatter.value.name) {
     alert('请输入目标')
     return
   }
-
-  mattersDB.add('matters', {
-    name: curMatter.value.name,
-    color: 'blue',
-    time: new Date(),
-  })
 }
 
 function toggleStartCount() {

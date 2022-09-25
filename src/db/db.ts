@@ -83,6 +83,24 @@ class DB<T> {
     // let request =  store.index(key || 'id').get(value)
   }
 
+  public getAll(storeName: keyof T): Promise<T[keyof T][]> {
+    return new Promise((resolve, reject) => {
+      this.openIndexedDB().then((db) => {
+        const res = db
+          .transaction(storeName, 'readwrite')
+          .objectStore(storeName)
+          .getAll()
+
+        res.onerror = (e) => {
+          reject(e)
+        }
+        res.onsuccess = (e) => {
+          resolve((e.target as any).result)
+        }
+      })
+    })
+  }
+
   public update(storeName: keyof T) {}
 
   private openIndexedDB(): Promise<IDBDatabase>

@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import { toRef } from 'vue'
+import { computed, toRef, unref } from 'vue'
 import { useCanvasSettings } from '~/store'
+import { palette, PaletteType } from '~/utils'
 
 const bgColor = toRef(useCanvasSettings(), 'bgColor')
+
+const props = defineProps<{
+  color?: PaletteType
+}>()
+
+const realColor = computed(() =>
+  props.color ? palette[props.color] : unref(bgColor)
+)
 </script>
 
 <template>
@@ -11,8 +20,8 @@ const bgColor = toRef(useCanvasSettings(), 'bgColor')
 
 <style scoped>
 .rect {
-  --first: v-bind(bgColor.bigger);
-  --second: v-bind(bgColor.smaller);
+  --first: v-bind(realColor.bigger);
+  --second: v-bind(realColor.smaller);
   background: repeating-linear-gradient(
     45deg,
     var(--first),

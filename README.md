@@ -1,4 +1,4 @@
-# 🚀 [_Session_](https://www.stayinsession.com/) imitate
+<h1 align="center"> 🚀 <a herf="https://www.stayinsession.com/">Session</a> imitate</h1>
 
 _WIP_
 

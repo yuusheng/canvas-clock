@@ -1,4 +1,4 @@
-# 🚀 一个简单的 canvas 实现的仿 session 时钟
+# 🚀 A simple canvas clock inspired by session
 
 _WIP_
 

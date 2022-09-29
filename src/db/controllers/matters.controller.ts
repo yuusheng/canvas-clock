@@ -2,7 +2,7 @@ import { PaletteType } from '~/utils'
 import { MatterDBStores, mattersDB } from '../models'
 
 export async function addNewMatter(
-  name: keyof MatterDBStores,
+  name: string,
   color: PaletteType,
   duration = 25
 ) {

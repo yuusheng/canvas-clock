@@ -10,9 +10,11 @@
     "jsx": "preserve",
     "allowJs": true,
     "keyofStringsOnly": true,
+    "skipLibCheck": true,
     "paths": {
       "~/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+  "exclude": ["node_modules/**"]
 }

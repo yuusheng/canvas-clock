@@ -151,7 +151,7 @@ class DB<T> {
           if (store.objectStoreIndex)
             store.objectStoreIndex.forEach((index) => {
               objectStore.createIndex(
-                index.name as string,
+                index.name as unknown as string,
                 index.keyPath,
                 index.options || { unique: false }
               )

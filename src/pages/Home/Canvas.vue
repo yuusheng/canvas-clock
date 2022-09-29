@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { useCanvasSettings } from '~/store'
 import { initCanvas, onTime } from '~/utils'
 
-const canvas = ref<HTMLCanvasElement | null>(null)
+const canvas = ref<HTMLCanvasElement | null>()
 const { canvasSize, updateCtx } = useCanvasSettings()
 
 const ctx = ref<CanvasRenderingContext2D>()

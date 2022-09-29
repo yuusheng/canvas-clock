@@ -22,7 +22,7 @@ async function clickStartCount() {
     }
   })
 
-  await addNewMatter(curMatter.value.name || '目标', curMatter.value.color)
+  await addNewMatter(curMatter.value.name, curMatter.value.color)
   return
   console.log(curMatter.value)
   if (!curMatter.value.name) {

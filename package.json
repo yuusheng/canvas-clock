@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "test": "vitest",
+    "preview": "vite preview",
     "release": "nr build && bumpp package.json"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
     "vue-tsc": "^0.40.13"
   },
   "dependencies": {
+    "dexie": "^3.2.2",
     "pinia": "^2.0.17",
     "unocss": "^0.45.1",
     "vue": "^3.2.37",

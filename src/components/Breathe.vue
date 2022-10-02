@@ -32,8 +32,10 @@ defineExpose({ teleportShow })
         flex="~ col"
         class="fixed space-y-16 z-10 inset-0 overflow-hidden bg-op-0 items-center justify-center"
       >
-        <h2 font-light text-white class="fading-text">深呼吸</h2>
-        <div class="twinkle-circle h50 w50 rounded-full"></div>
+        <h2 font-light text-white class="fading-text">
+          深呼吸
+        </h2>
+        <div class="twinkle-circle h50 w50 rounded-full" />
         <button
           p="x4 y1.5"
           text="white xs"

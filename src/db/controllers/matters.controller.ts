@@ -1,10 +1,11 @@
-import { PaletteType } from '~/utils'
-import { MatterDBStores, mattersDB } from '../models'
+import type { MatterDBStores } from '../models'
+import { mattersDB } from '../models'
+import type { PaletteType } from '~/utils'
 
 export async function addNewMatter(
   name: string,
   color: PaletteType,
-  duration = 25
+  duration = 25,
 ) {
   return await mattersDB.add('matters', {
     name,
@@ -15,5 +16,5 @@ export async function addNewMatter(
 }
 
 export async function getAllMatters(name: keyof MatterDBStores) {
-  return await mattersDB.getAll('matters')
+  return await mattersDB.getAll(name)
 }

@@ -3,7 +3,6 @@ import BaseModal from '~/components/BaseModal.vue'
 </script>
 
 <template>
-  <!-- <BaseModal >
-  
-  </BaseModal> -->
+  <div />
+  <!-- <BaseModal > </BaseModal> -->
 </template>

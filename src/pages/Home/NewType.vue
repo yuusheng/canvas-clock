@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, toRef } from 'vue'
-import BaseModal from '~/components/BaseModal.vue'
 import ColorSelector from './ColorSelector.vue'
 import MatterList from './MatterList.vue'
+import BaseModal from '~/components/BaseModal.vue'
 import BaseInput from '~/components/BaseInput.vue'
 import { useCanvasSettings, useMatter } from '~/store'
-import { PaletteType } from '~/utils'
+import type { PaletteType } from '~/utils'
 
 const matter = toRef(useMatter(), 'curMatter')
 const bgColor = toRef(useCanvasSettings(), 'bgColor')
@@ -21,7 +21,7 @@ function toggleNewType() {
   newTypeModal = !newTypeModal
 }
 
-let typeName = ref<string>()
+const typeName = ref<string>()
 const curColor = ref<PaletteType>('blue')
 
 function changeCurColor(color: PaletteType) {
@@ -55,13 +55,13 @@ function reset() {
     <li
       class="w2 h2 m-1.5 rounded-full cursor-pointer list-none"
       :style="`background-color: ${bgColor.smaller}`"
-    ></li>
+    />
     {{ matter?.name || '添加新类别' }}
   </button>
 
   <BaseModal v-model="showSection" title="类别">
     <div flex="~ col" items-center>
-      <MatterList h100 @changeSectionShow="changeSectionShow" />
+      <MatterList h100 @change-section-show="changeSectionShow" />
 
       <button
         p="x2 y2"
@@ -76,7 +76,7 @@ function reset() {
         <div flex="~ col" items-center>
           <BaseInput v-model="typeName" placeholder="类别名称" />
           <ColorSelector
-            :curColor="curColor"
+            :cur-color="curColor"
             @change-cur-color="changeCurColor"
           />
           <div wfull flex justify-between>

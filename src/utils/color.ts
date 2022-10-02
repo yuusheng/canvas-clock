@@ -63,10 +63,10 @@ export const palette = {
 export type PaletteType = keyof typeof palette
 
 export function hexToRgba(hex: string, opacity: string) {
-  let rgba = []
+  const rgba = []
   const range = hex.startsWith('#') ? [1, 7] : [0, 6]
-  for (let i = range[0]; i < range[1]; i += 2) {
-    rgba.push(parseInt('0x' + hex.slice(i, i + 2)))
-  }
+  for (let i = range[0]; i < range[1]; i += 2)
+    rgba.push(parseInt(`0x${hex.slice(i, i + 2)}`))
+
   return `rgba(${rgba.join(', ')}, ${opacity})`
 }

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useCanvasSettings } from '~/store'
+import { storeToRefs } from 'pinia'
 import Canvas from './Canvas.vue'
 import Board from './Board.vue'
-import BaseInput from '~/components/BaseInput.vue'
 import Header from './Header.vue'
-import { storeToRefs } from 'pinia'
 import Startup from './Startup.vue'
+import BaseInput from '~/components/BaseInput.vue'
+import { useCanvasSettings } from '~/store'
 
 const countTime = ref('25')
 

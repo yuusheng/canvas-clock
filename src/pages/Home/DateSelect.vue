@@ -27,7 +27,7 @@ function toggleClickRect(date: number) {
       p="x2 y1"
       class="w4 rounded text-2xl text-center border-1 border-gray-2 cursor-pointer"
       @click="emits('preDate')"
-    />
+    >
 
     <div
       flex
@@ -42,11 +42,12 @@ function toggleClickRect(date: number) {
       p="x2 y1"
       class="w4 rounded text-2xl text-center border-1 border-gray-2 cursor-pointer"
       @click="emits('nextDate')"
-    />
+    >
   </div>
   <div flex>
     <BaseDateRect
       v-for="day of dayList"
+      :key="day.date"
       :today="day?.today"
       :current="current"
       :date="day.date"

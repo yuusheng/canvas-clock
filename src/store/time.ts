@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
 import { defineStore } from 'pinia'
-import { Day } from '~/utils'
+import type { Day } from '~/utils'
 
 interface DayListItem {
   today?: boolean
@@ -27,12 +27,13 @@ export const useTime = defineStore('time', () => {
   watchEffect(() => {
     clearDayList()
     for (let i = 1; i <= 7; i++) {
-      let dayListItem: DayListItem = {
+      const dayListItem: DayListItem = {
         day: dayListStatic[i % 7],
         date: date.value + i - day.value,
       }
 
-      if (i === day.value) dayListItem['today'] = true
+      if (i === day.value)
+        dayListItem.today = true
       dayList.value.push(dayListItem)
     }
   })

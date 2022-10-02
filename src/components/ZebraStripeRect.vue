@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { computed, toRef, unref } from 'vue'
 import { useCanvasSettings } from '~/store'
-import { palette, PaletteType } from '~/utils'
-
-const bgColor = toRef(useCanvasSettings(), 'bgColor')
+import type { PaletteType } from '~/utils'
+import { palette } from '~/utils'
 
 const props = defineProps<{
   color?: PaletteType
 }>()
 
+const bgColor = toRef(useCanvasSettings(), 'bgColor')
+
 const realColor = computed(() =>
-  props.color ? palette[props.color] : unref(bgColor)
+  props.color ? palette[props.color] : unref(bgColor),
 )
 </script>
 
 <template>
-  <div class="rounded-1.4 rect"></div>
+  <div class="rounded-1.4 rect" />
 </template>
 
 <style scoped>

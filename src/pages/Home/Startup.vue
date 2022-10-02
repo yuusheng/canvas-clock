@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import Breathe from '~/components/Breathe.vue'
 import { storeToRefs } from 'pinia'
 import { computed, ref, watchEffect } from 'vue'
+import CountingButtons from './CountingButtons.vue'
+import Breathe from '~/components/Breathe.vue'
 import { addNewMatter, mattersDB } from '~/db'
 import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
-import CountingButtons from './CountingButtons.vue'
 
 const { bgColor } = storeToRefs(useCanvasSettings())
 const { curMatter } = storeToRefs(useMatter())
+
+const breathe = ref()
+const counting = ref(false)
+const bgStyle = computed(() => `background-color: ${bgColor.value.button}`)
 
 async function clickStartCount() {
   breathe.value.teleportShow = true
@@ -34,25 +38,21 @@ async function clickStartCount() {
 function toggleStartCount() {
   counting.value = !counting.value
 }
-
-const breathe = ref()
-const counting = ref(false)
-const bgStyle = computed(() => `background-color: ${bgColor.value.button}`)
 </script>
 
 <template>
   <div h15>
     <button
+      v-if="!counting"
       class="m2 w32 h8 border-0 rounded-4 cursor-pointer hover:op-90"
       text="sm white"
       :style="bgStyle"
       @click="clickStartCount"
-      v-if="!counting"
     >
       开始计时
     </button>
 
-    <CountingButtons @toggle-start-count="toggleStartCount" v-else />
+    <CountingButtons v-else @toggle-start-count="toggleStartCount" />
   </div>
 
   <Breathe ref="breathe" />

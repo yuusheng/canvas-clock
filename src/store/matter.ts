@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
-import { Matter } from '~/utils'
 import { computed, ref } from 'vue'
+import type { Matter } from '~/utils'
 
 export const useMatter = defineStore('matter', () => {
   const curMatter = ref<Matter>({ name: '', color: 'blue' })
   const matterList = ref<Map<string, Matter>>(new Map())
 
-  let initialMatterList: Matter[] = [
+  const initialMatterList: Matter[] = [
     { name: '蓝色', color: 'blue' },
     { name: '绿色', color: 'green' },
     { name: '红色', color: 'red' },
@@ -31,9 +31,8 @@ export const useMatter = defineStore('matter', () => {
   }
 
   function removeMatter(matter: Matter) {
-    if (matterList.value.has(matter.name)) {
+    if (matterList.value.has(matter.name))
       matterList.value.delete(matter.name)
-    }
   }
 
   function getMatterList() {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRef } from 'vue'
 import { useCanvasSettings } from '~/store'
-import { Day } from '~/utils'
+import type { Day } from '~/utils'
 
 defineProps<{
   today?: boolean
@@ -29,6 +29,6 @@ const color = toRef(useCanvasSettings(), 'bgColor')
       v-if="today"
       class="w1.5 h1.5 rounded-full"
       :style="`background-color: ${color.button}`"
-    ></span>
+    />
   </div>
 </template>

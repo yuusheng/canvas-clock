@@ -1,4 +1,5 @@
-import { computed, ref, watch, watchEffect, WatchStopHandle } from 'vue'
+import type { WatchStopHandle } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useCanvasSettings } from '~/store'
 
 let interval: number
@@ -36,9 +37,8 @@ function setupTime() {
   const sec = computed(() => ((time.value / 1000) | 0) % 60)
 
   progressStop = watch([min, sec], () => {
-    if (min.value === 0 && sec.value === 0) {
+    if (min.value === 0 && sec.value === 0)
       stopAllSideEffect()
-    }
   })
   useCanvasSettings().updateTime(min, sec)
 }

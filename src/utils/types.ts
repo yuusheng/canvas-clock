@@ -1,5 +1,5 @@
-import { Ref } from 'vue'
-import { PaletteType } from '.'
+import type { Ref } from 'vue'
+import type { PaletteType } from '.'
 
 export type MaybeRef<T> = Ref<T> | T
 

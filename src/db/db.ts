@@ -101,7 +101,7 @@ class DB<T> {
     })
   }
 
-  public update(storeName: keyof T) {}
+  // public update(storeName: keyof T) {}
 
   private openIndexedDB(): Promise<IDBDatabase>
   private openIndexedDB(
@@ -109,19 +109,20 @@ class DB<T> {
   ): Promise<Event>
 
   private openIndexedDB(option?: Option<T> | ObjStore<T, keyof T>[]) {
-    if (!option) return this.open()
+    if (!option)
+      return this.open()
 
-    let isOption = (props: any): props is Option<T> =>
-      typeof (props as Option<T>)['objStores'] !== 'undefined'
+    const isOption = (props: any): props is Option<T> =>
+      typeof (props as Option<T>).objStores !== 'undefined'
 
     return new Promise<Event>((resolve, reject) => {
-      let request = indexedDB.open(this.name, this.curVersion)
+      const request = indexedDB.open(this.name, this.curVersion)
 
       request.onerror = (event) => {
         reject((event.target as any).message)
       }
 
-      if (isOption(option))
+      if (isOption(option)) {
         request.onsuccess = (event) => {
           if (!this.useupgrad) {
             this.db = (event.target as any).result
@@ -130,6 +131,7 @@ class DB<T> {
           option?.errorHandler && option.errorHandler(event)
           console.log('[indexedDB] open indexDB successfully', this.db)
         }
+      }
 
       request.onupgradeneeded = (event) => {
         this.db = (event.target as any).result
@@ -139,23 +141,25 @@ class DB<T> {
           keyPath: 'id',
           autoIncrement: true,
         }
-        let stores = isOption(option) ? option.objStores : option
+        const stores = isOption(option) ? option.objStores : option
         stores.forEach((store) => {
-          if (this.db.objectStoreNames.contains(store.objectStoreName)) return
+          if (this.db.objectStoreNames.contains(store.objectStoreName))
+            return
 
           const objectStore = this.db.createObjectStore(
             store.objectStoreName,
-            store?.objectStoreOptions || generalOption
+            store?.objectStoreOptions || generalOption,
           )
 
-          if (store.objectStoreIndex)
+          if (store.objectStoreIndex) {
             store.objectStoreIndex.forEach((index) => {
               objectStore.createIndex(
                 index.name as unknown as string,
                 index.keyPath,
-                index.options || { unique: false }
+                index.options || { unique: false },
               )
             })
+          }
         })
         console.log('[DB] object store name', this.db.objectStoreNames)
         resolve(event)
@@ -165,7 +169,7 @@ class DB<T> {
 
   private open() {
     return new Promise<IDBDatabase>((resolve, reject) => {
-      let request = indexedDB.open(this.name, this.curVersion)
+      const request = indexedDB.open(this.name, this.curVersion)
 
       request.onsuccess = (event) => {
         resolve((event.target as any).result)

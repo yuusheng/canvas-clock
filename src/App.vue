@@ -4,7 +4,7 @@ import Navigator from './components/Navigator.vue'
 
 <template>
   <div flex="~" h-screen overflow-hidden>
-    <Navigator></Navigator>
-    <router-view></router-view>
+    <Navigator />
+    <router-view />
   </div>
 </template>

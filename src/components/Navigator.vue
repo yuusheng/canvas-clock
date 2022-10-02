@@ -15,17 +15,17 @@ const router = useRouter()
     justify-between
   >
     <ul spacey-3 list-none>
-      <li><div i-mdi-clock-outline @click="router.push('/')"></div></li>
+      <li><div i-mdi-clock-outline @click="router.push('/')" /></li>
       <li>
-        <div i-mdi-google-analytics @click="router.push('/statistics')"></div>
+        <div i-mdi-google-analytics @click="router.push('/statistics')" />
       </li>
-      <li><div i-mdi-account-outline @click="router.push('/user')"></div></li>
-      <li><div i-mdi-star-outline @click="router.push('/star')"></div></li>
+      <li><div i-mdi-account-outline @click="router.push('/user')" /></li>
+      <li><div i-mdi-star-outline @click="router.push('/star')" /></li>
     </ul>
 
     <ul list-none>
       <li>
-        <div i-mdi-cog-outline @click="router.push('/settings')"></div>
+        <div i-mdi-cog-outline @click="router.push('/settings')" />
       </li>
     </ul>
   </nav>

@@ -2,11 +2,11 @@
 import { toRef } from 'vue'
 import { useCanvasSettings } from '~/store'
 
-const buttonColor = toRef(useCanvasSettings(), 'buttonColor')
-
 const emits = defineEmits<{
   (e: 'toggleToday'): void
 }>()
+
+const buttonColor = toRef(useCanvasSettings(), 'buttonColor')
 </script>
 
 <template>

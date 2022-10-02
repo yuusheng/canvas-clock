@@ -18,8 +18,8 @@ function input(e: any) {
     type="text"
     :placeholder="placeholder"
     :value="modelValue"
-    @input="input"
     class="h7 my2 px2 outline-none border-none rounded-7 text-center"
     bg="gray-3/30"
-  />
+    @input="input"
+  >
 </template>

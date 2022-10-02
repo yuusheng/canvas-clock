@@ -3,7 +3,7 @@ import { useCanvasSettings } from '~/store/canvasSettings'
 export function drawClock(
   ctx: CanvasRenderingContext2D,
   min: number,
-  sec: number
+  sec: number,
 ) {
   const { canvasSize, circleSize, bgColor } = useCanvasSettings()
 
@@ -72,7 +72,7 @@ export function drawCircle(
   radius = 100,
   full = true,
   bgColor = '#fff',
-  shadow?: string
+  shadow?: string,
 ) {
   ctx.save()
   ctx.beginPath()
@@ -88,7 +88,8 @@ export function drawCircle(
   if (full) {
     ctx.fillStyle = bgColor
     ctx.fill()
-  } else {
+  }
+  else {
     ctx.stroke()
   }
 
@@ -105,12 +106,12 @@ export function drawCircleByAngle(
   radius = 100,
   minute: number,
   sec: number,
-  bgColor = '#fff'
+  bgColor = '#fff',
 ) {
   ctx.save()
 
   ctx.beginPath()
-  let curAngle = getAngle(minute, sec)
+  const curAngle = getAngle(minute, sec)
   ctx.rotate(-Math.PI / 2)
   ctx.moveTo(0, 0)
   ctx.arc(0, 0, radius, 0, curAngle)
@@ -128,13 +129,13 @@ export function drawPointer(
   sec: number,
   long: number,
   color?: string,
-  shadow?: string
+  shadow?: string,
 ) {
   // 时针
   ctx.rotate(
-    ((2 * Math.PI) / 60) * minute +
-      ((2 * Math.PI) / 60) * (sec / 60) -
-      Math.PI / 2
+    ((2 * Math.PI) / 60) * minute
+      + ((2 * Math.PI) / 60) * (sec / 60)
+      - Math.PI / 2,
   )
 
   ctx.beginPath()
@@ -166,7 +167,7 @@ export function drawRoundRect(
   y: number,
   width: number,
   height: number,
-  radius: number
+  radius: number,
 ) {
   ctx.save()
   ctx.beginPath()
@@ -177,7 +178,7 @@ export function drawRoundRect(
     radius + y,
     radius,
     (Math.PI * 3) / 2,
-    Math.PI * 2
+    Math.PI * 2,
   )
   ctx.lineTo(width + x, height + y - radius)
   ctx.arc(width - radius + x, height - radius + y, radius, 0, (Math.PI * 1) / 2)

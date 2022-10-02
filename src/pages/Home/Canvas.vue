@@ -21,5 +21,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas"></canvas>
+  <canvas ref="canvas" />
 </template>

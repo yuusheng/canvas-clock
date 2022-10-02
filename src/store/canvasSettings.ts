@@ -1,6 +1,8 @@
-import { computed, Ref, ref, watch, watchEffect, WatchStopHandle } from 'vue'
+import type { Ref, WatchStopHandle } from 'vue'
+import { computed, ref, watch, watchEffect } from 'vue'
 import { defineStore } from 'pinia'
-import { drawClock, palette, PaletteType } from '~/utils'
+import type { PaletteType } from '~/utils'
+import { drawClock, palette } from '~/utils'
 
 export const useCanvasSettings = defineStore('canvasSettings', () => {
   const canvasSize = ref({ width: 300, height: 300 })
@@ -10,13 +12,12 @@ export const useCanvasSettings = defineStore('canvasSettings', () => {
   const ctx = ref<CanvasRenderingContext2D>()
   const min = ref<number>()
   const sec = ref<number>()
-  const buttonColor = computed(() => 'background-color:' + bgColor.value.button)
+  const buttonColor = computed(() => `background-color:${bgColor.value.button}`)
 
   watch([min, sec, bgColor, ctx], () => {
-    if (ctx.value) {
+    if (ctx.value)
       drawClock(ctx.value, min.value, sec.value)
       // console.log(`[draw] ${min.value}:${sec.value}`)
-    }
   })
 
   let curTimeStopper: WatchStopHandle

@@ -24,7 +24,7 @@ const modalBg = computed(() => bgColor.value.bg.replace(/0.\d\d/, '1'))
 </script>
 
 <template>
-  <teleport to="body" v-if="modelValue">
+  <teleport v-if="modelValue" to="body">
     <div
       ref="modal-backdrop"
       class="fixed z-10 inset-0 overflow-hidden bg-black bg-opacity-50"
@@ -34,19 +34,21 @@ const modalBg = computed(() => bgColor.value.bg.replace(/0.\d\d/, '1'))
       >
         <!-- todo 背景颜色 -->
         <div
+          ref="modal"
           class="rounded-lg text-left overflow-hidden shadow-xl p8 w-1/2 relative bg-white"
           role="dialog"
-          ref="modal"
           aria-modal="true"
           aria-labelledby="modal-headline"
         >
           <div
             class="i-mdi-close-circle-outline w12 h12 text-gray-4 absolute right-4 top-3 cursor-pointer"
             @click="toggleClose"
-          ></div>
-          <h2 text-gray-7>{{ title }}</h2>
+          />
+          <h2 text-gray-7>
+            {{ title }}
+          </h2>
           {{ content }}
-          <slot></slot>
+          <slot />
         </div>
       </div>
     </div>

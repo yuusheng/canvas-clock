@@ -1,1 +1,1 @@
-function notify() {}
+export function notify() {}

@@ -16,6 +16,6 @@ const buttonColor = toRef(useCanvasSettings(), 'buttonColor')
     class="rounded-full flex items-center justify-center border-0 cursor-pointer hover:op-90"
     @click="clickEvent"
   >
-    <img h4 w4 :src="`${bgImgUrl}`" alt="" />
+    <img h4 w4 :src="`${bgImgUrl}`" alt="">
   </button>
 </template>

@@ -1,9 +1,9 @@
-import { computed, onUnmounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useCanvasSettings } from '~/store'
 
 export function onTime() {
   const time = ref(new Date())
-  const interval = setInterval(() => {
+  setInterval(() => {
     time.value = new Date()
   }, 1000)
 

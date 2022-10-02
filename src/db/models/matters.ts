@@ -1,5 +1,5 @@
-import { PaletteType } from '~/utils'
 import { createDB } from '../db'
+import type { PaletteType } from '~/utils'
 
 export type MatterDBStorenames = keyof MatterDBStores
 

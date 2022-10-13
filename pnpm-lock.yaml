@@ -1,12 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@antfu/eslint-config': ^0.27.0
   '@iconify-json/mdi': ^1.1.29
   '@unocss/preset-attributify': ^0.44.7
   '@unocss/preset-icons': ^0.45.5
   '@unocss/preset-wind': ^0.44.2
   '@vitejs/plugin-vue': ^3.0.1
+  '@yuusheng/eslint-config': ^0.0.4
   bumpp: ^8.2.1
   dexie: ^3.2.2
   eslint: ^8.24.0
@@ -28,12 +28,12 @@ dependencies:
   vue-router: registry.npmmirror.com/vue-router/4.1.3_vue@3.2.37
 
 devDependencies:
-  '@antfu/eslint-config': registry.npmmirror.com/@antfu/eslint-config/0.27.0_oma37ntcsyoxqn5sr4l7ekf4na
   '@iconify-json/mdi': registry.npmmirror.com/@iconify-json/mdi/1.1.29
   '@unocss/preset-attributify': registry.npmmirror.com/@unocss/preset-attributify/0.44.7
   '@unocss/preset-icons': registry.npmmirror.com/@unocss/preset-icons/0.45.5
   '@unocss/preset-wind': registry.npmmirror.com/@unocss/preset-wind/0.44.7
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.0.1_vite@3.0.4+vue@3.2.37
+  '@yuusheng/eslint-config': registry.npmmirror.com/@yuusheng/eslint-config/0.0.4_oma37ntcsyoxqn5sr4l7ekf4na
   bumpp: registry.npmmirror.com/bumpp/8.2.1
   eslint: registry.npmmirror.com/eslint/8.24.0
   prettier: registry.npmmirror.com/prettier/2.7.1
@@ -1051,6 +1051,21 @@ packages:
     resolution: {integrity: sha512-0PLQ6RUtZM0vO3teRfzGi4ltLUO5aO+kLgwh4Um3THSR03rpQWLTuRCkuO5A41ITzwdWeKdPHtSARuPkoo5pCQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/shared/-/shared-3.2.40.tgz}
     name: '@vue/shared'
     version: 3.2.40
+    dev: true
+
+  registry.npmmirror.com/@yuusheng/eslint-config/0.0.4_oma37ntcsyoxqn5sr4l7ekf4na:
+    resolution: {integrity: sha512-RaR2qIJuA4Mf44XP3ENS/CTNGN7/PMhqhl8n5sy9KnQ+IYqyie+tI8dJ8juNhnXsQj4hJWjkTy1v5bYBRl6HnA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@yuusheng/eslint-config/-/eslint-config-0.0.4.tgz}
+    id: registry.npmmirror.com/@yuusheng/eslint-config/0.0.4
+    name: '@yuusheng/eslint-config'
+    version: 0.0.4
+    dependencies:
+      '@antfu/eslint-config': registry.npmmirror.com/@antfu/eslint-config/0.27.0_oma37ntcsyoxqn5sr4l7ekf4na
+    transitivePeerDependencies:
+      - eslint
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - supports-color
+      - typescript
     dev: true
 
   registry.npmmirror.com/acorn-jsx/5.3.2_acorn@8.8.0:

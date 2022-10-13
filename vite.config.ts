@@ -27,6 +27,17 @@ const config = defineConfig({
       '~': resolve(__dirname, '/src'),
     },
   },
+  build: {
+    minify: false,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules'))
+            return 'vender'
+        },
+      },
+    },
+  },
 })
 
 export default config

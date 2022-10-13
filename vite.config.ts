@@ -7,6 +7,7 @@ import Unocss from 'unocss/vite'
 import presetWind from '@unocss/preset-wind'
 import presetAttributify from '@unocss/preset-attributify'
 import presetIcons from '@unocss/preset-icons'
+import { manualChunks } from './build.config'
 
 // https://vitejs.dev/config/
 const config = defineConfig({
@@ -28,13 +29,9 @@ const config = defineConfig({
     },
   },
   build: {
-    minify: false,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules'))
-            return 'vender'
-        },
+        manualChunks,
       },
     },
   },

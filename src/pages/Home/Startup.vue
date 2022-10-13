@@ -27,12 +27,12 @@ async function clickStartCount() {
   })
 
   await addNewMatter(curMatter.value.name, curMatter.value.color)
-  return
-  console.log(curMatter.value)
-  if (!curMatter.value.name) {
-    alert('请输入目标')
-    return
-  }
+  // return
+  // console.log(curMatter.value)
+  // if (!curMatter.value.name) {
+  //   alert('请输入目标')
+  //   return
+  // }
 }
 
 function toggleStartCount() {

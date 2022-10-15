@@ -1,39 +1,30 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 import DateSelect from './DateSelect.vue'
 import TimeTable from './TimeTable.vue'
 import MatterListTable from './MatterListTable.vue'
 import { useTime } from '~/store'
+import { formatDate, getDay } from '~/utils'
 
-const { date } = toRefs(useTime())
+const { currentDate } = toRefs(useTime())
+const { backToToday } = useTime()
 
-const current = ref()
+const current = computed(() =>
+  getDay(currentDate.value),
+)
+
 const curName = computed(() => {
-  if (current.value === date.value)
-    return '今天'
-  else if (current.value < date.value)
-    return `${date.value - current.value}天前`
-  else return `${current.value - date.value}天后`
-})
+  const today = new Date()
+  if (currentDate.value === formatDate(today)) { return '今天' }
+  else {
+    const date = new Date(currentDate.value)
+    const diffDays = date.getDate() - today.getDate()
 
-function updateCurrent(date: number) {
-  current.value = date
-}
-
-function preDate() {
-  current.value -= 1
-}
-
-function nextDate() {
-  current.value += 1
-}
-
-function toggleToday() {
-  current.value = date.value
-}
-
-onMounted(() => {
-  toggleToday()
+    if (Math.abs(diffDays) < 3)
+      return `${Math.abs(diffDays)}天${diffDays > 0 ? '后' : '前'}`
+    else
+      return `${date.getMonth()}月${date.getDate()}日`
+  }
 })
 </script>
 
@@ -43,9 +34,6 @@ onMounted(() => {
       <DateSelect
         :current="current"
         :cur-name="curName"
-        @update-current="updateCurrent"
-        @next-date="nextDate"
-        @pre-date="preDate"
       />
     </div>
 
@@ -53,6 +41,6 @@ onMounted(() => {
 
     <MatterListTable h="83%" />
 
-    <TimeTable @toggle-today="toggleToday" />
+    <TimeTable @toggle-today="backToToday" />
   </main>
 </template>

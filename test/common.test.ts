@@ -26,6 +26,6 @@ const map = new Map()
 map.set('a', { name: 'yuusheng' })
 map.set('b', { name: 'yiihan' })
 
-it('', () => {
+it.skip('', () => {
   expect(map.forEach(v => console.log(v))).toMatchInlineSnapshot('undefined')
 })

@@ -5,19 +5,12 @@ import BaseDateRect from '~/components/BaseDateRect.vue'
 
 defineProps<{ curName?: string; current?: number }>()
 
-const emits = defineEmits<{
-  (e: 'preDate'): void
-  (e: 'nextDate'): void
-  (e: 'updateCurrent', data: number): void
-}>()
-
 const { dayList } = toRefs(useTime())
+const { preDay, nextDay, jumpToDate } = useTime()
 
-function toggleClickRect(date: number) {
-  emits('updateCurrent', date)
+function toggleClickRect(date: Date) {
+  jumpToDate(date)
 }
-
-// onMounted(() => {})
 </script>
 
 <template>
@@ -26,7 +19,7 @@ function toggleClickRect(date: number) {
       src="../../static/images/left.png"
       p="x2 y1"
       class="w4 rounded text-2xl text-center border-1 border-gray-2 cursor-pointer"
-      @click="emits('preDate')"
+      @click="preDay"
     >
 
     <div
@@ -41,16 +34,16 @@ function toggleClickRect(date: number) {
       src="../../static/images/right.png"
       p="x2 y1"
       class="w4 rounded text-2xl text-center border-1 border-gray-2 cursor-pointer"
-      @click="emits('nextDate')"
+      @click="nextDay"
     >
   </div>
   <div flex>
     <BaseDateRect
       v-for="day of dayList"
-      :key="day.date"
+      :key="day.date.getDate()"
       :today="day?.today"
       :current="current"
-      :date="day.date"
+      :date="day.date.getDate()"
       :day="day.day"
       @click="toggleClickRect(day.date)"
     />

@@ -20,7 +20,7 @@ const curName = computed(() => {
     const date = new Date(currentDate.value)
     const diffDays = date.getDate() - today.getDate()
 
-    if (Math.abs(diffDays) < 3)
+    if (date.getMonth() === today.getMonth() && Math.abs(diffDays) < 3)
       return `${Math.abs(diffDays)}天${diffDays > 0 ? '后' : '前'}`
     else
       return `${date.getMonth() + 1}月${date.getDate()}日`

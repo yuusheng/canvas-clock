@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { defineStore } from 'pinia'
-import { formatDate, getAllDateFormatted, getDay, getYearAndMonth, oneDay, useCalender } from '~/utils'
+import { formatDate, getAllDateFormatted, oneDay, useCalender } from '~/utils'
 import type { Day } from '~/utils'
 
 interface DateListItem {
@@ -33,28 +33,28 @@ export const useTime = defineStore('time', () => {
 
   const dateList = computed(() => {
     // 当前星期几
-    const currentDay = new Date(currentDateFormatted.value).getDay()
-    const dateList = []
+    const currentDay = new Date(currentDateFormatted.value).getDay() || 7
+    // const dateList = []
     const todayFormatted = formatDate(new Date())
 
-    const begin = new Date(currentDateFormatted.value).getTime() - oneDay * currentDay
-    const end = new Date(currentDateFormatted.value).getTime() - oneDay * currentDay
+    const begin = new Date(currentDateFormatted.value).getTime() - oneDay * (currentDay - 1)
+    const end = new Date(currentDateFormatted.value).getTime() + oneDay * (7 - currentDay)
 
-    getAllDateFormatted(new Date(begin), new Date(end))
-
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(`${getYearAndMonth(currentDateFormatted.value)}-${getDay(currentDateFormatted.value) + i - currentDay}`)
-      const dayListItem: DateListItem = {
+    const allDates = getAllDateFormatted(new Date(begin), new Date(end)).map((v, i) => {
+      const date = new Date(v)
+      const day = date.getDay()
+      const dateListItem: DateListItem = {
         date,
-        day: dayListStatic[i],
+        day: dayListStatic[day],
       }
       if (currentDay === i)
-        dayListItem.current = true
+        dateListItem.current = true
       if (todayFormatted === formatDate(date))
-        dayListItem.today = true
-      dateList[i] = dayListItem
-    }
-    return dateList
+        dateListItem.today = true
+      return dateListItem
+    })
+
+    return allDates
   })
 
   // watchEffect(() => {

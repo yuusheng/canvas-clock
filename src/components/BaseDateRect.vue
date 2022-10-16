@@ -26,9 +26,8 @@ const color = toRef(useCanvasSettings(), 'bgColor')
     </div>
 
     <span
-      v-if="today"
       class="w1.5 h1.5 rounded-full"
-      :style="`background-color: ${color.button}`"
+      :style="today && `background-color: ${color.button}`"
     />
   </div>
 </template>

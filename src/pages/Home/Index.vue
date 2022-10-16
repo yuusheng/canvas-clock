@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import Canvas from './Canvas.vue'
 import Board from './Board.vue'
@@ -10,7 +10,18 @@ import { useCanvasSettings } from '~/store'
 
 const countTime = ref('25')
 
-const { bgColor } = storeToRefs(useCanvasSettings())
+const { bgColor, min, sec } = storeToRefs(useCanvasSettings())
+
+const start = ref(false)
+function startup() {
+  start.value = true
+}
+
+function stop() {
+  start.value = false
+}
+
+const time = computed(() => `${String(min.value).padStart(2, '0')}:${String(sec.value).padStart(2, '0')}`)
 </script>
 
 <template>
@@ -22,9 +33,12 @@ const { bgColor } = storeToRefs(useCanvasSettings())
       <div wfull myauto translate-y="-15" flex="~ col" text-center items-center>
         <Header />
         <Canvas ref="canvas" />
-        <BaseInput v-model="countTime" />
+        <BaseInput v-if="!start" v-model="countTime" />
+        <div v-else>
+          {{ time }}
+        </div>
 
-        <Startup />
+        <Startup @startup="startup" @stop="stop" />
       </div>
     </div>
 

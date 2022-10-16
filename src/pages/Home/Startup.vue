@@ -7,9 +7,13 @@ import { addNewMatter, mattersDB } from '~/db'
 import { useCanvasSettings, useMatter } from '~/store'
 import { countDown } from '~/utils'
 
+const emits = defineEmits<{
+  (e: 'startup'): void
+  (e: 'stop'): void
+}>()
+
 const { bgColor } = storeToRefs(useCanvasSettings())
 const { curMatter } = storeToRefs(useMatter())
-
 const breathe = ref()
 const counting = ref(false)
 const bgStyle = computed(() => `background-color: ${bgColor.value.button}`)
@@ -23,6 +27,7 @@ async function clickStartCount() {
       countDown()
       toggleStartCount()
       teleportShowWatchStoper()
+      emits('startup')
     }
   })
 
@@ -37,6 +42,7 @@ async function clickStartCount() {
 
 function toggleStartCount() {
   counting.value = !counting.value
+  emits('stop')
 }
 </script>
 
@@ -52,7 +58,7 @@ function toggleStartCount() {
       开始计时
     </button>
 
-    <CountingButtons v-else @toggle-start-count="toggleStartCount" />
+    <CountingButtons v-else @toggle-stop-count="toggleStartCount" />
   </div>
 
   <Breathe ref="breathe" />

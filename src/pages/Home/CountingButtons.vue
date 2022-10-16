@@ -11,13 +11,13 @@ import {
 } from '~/utils'
 
 const emits = defineEmits<{
-  (e: 'toggleStartCount'): void
+  (e: 'toggleStopCount'): void
 }>()
 
 function clickStop() {
   onTime()
   stopAllSideEffect()
-  emits('toggleStartCount')
+  emits('toggleStopCount')
 }
 function clickPause() {
   stopCountDown()

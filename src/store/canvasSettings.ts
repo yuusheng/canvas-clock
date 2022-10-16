@@ -17,7 +17,7 @@ export const useCanvasSettings = defineStore('canvasSettings', () => {
   watch([min, sec, bgColor, ctx], () => {
     if (ctx.value)
       drawClock(ctx.value, min.value, sec.value)
-      // console.log(`[draw] ${min.value}:${sec.value}`)
+    // console.log(`[draw] ${min.value}:${sec.value}`)
   })
 
   let curTimeStopper: WatchStopHandle

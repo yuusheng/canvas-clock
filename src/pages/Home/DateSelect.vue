@@ -5,7 +5,7 @@ import BaseDateRect from '~/components/BaseDateRect.vue'
 
 defineProps<{ curName?: string; current?: number }>()
 
-const { dayList } = toRefs(useTime())
+const { dateList } = toRefs(useTime())
 const { preDay, nextDay, jumpToDate } = useTime()
 
 function toggleClickRect(date: Date) {
@@ -39,7 +39,7 @@ function toggleClickRect(date: Date) {
   </div>
   <div flex>
     <BaseDateRect
-      v-for="day of dayList"
+      v-for="day of dateList"
       :key="day.date.getDate()"
       :today="day?.today"
       :current="current"

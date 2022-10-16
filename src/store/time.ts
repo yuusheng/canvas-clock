@@ -32,22 +32,23 @@ export const useTime = defineStore('time', () => {
   } = useCalender()
 
   const dateList = computed(() => {
+    const currentDate = new Date(currentDateFormatted.value)
     // 当前星期几
-    const currentDay = new Date(currentDateFormatted.value).getDay() || 7
+    const currentDay = currentDate.getDay() || 7
     // const dateList = []
     const todayFormatted = formatDate(new Date())
 
-    const begin = new Date(currentDateFormatted.value).getTime() - oneDay * (currentDay - 1)
-    const end = new Date(currentDateFormatted.value).getTime() + oneDay * (7 - currentDay)
+    const begin = currentDate.getTime() - oneDay * (currentDay - 1)
+    const end = currentDate.getTime() + oneDay * (7 - currentDay)
 
-    const allDates = getAllDateFormatted(new Date(begin), new Date(end)).map((v, i) => {
+    const allDates = getAllDateFormatted(new Date(begin), new Date(end)).map((v) => {
       const date = new Date(v)
       const day = date.getDay()
       const dateListItem: DateListItem = {
         date,
         day: dayListStatic[day],
       }
-      if (currentDay === i)
+      if (currentDay === (date.getDay() || 7))
         dateListItem.current = true
       if (todayFormatted === formatDate(date))
         dateListItem.today = true
@@ -56,24 +57,6 @@ export const useTime = defineStore('time', () => {
 
     return allDates
   })
-
-  // watchEffect(() => {
-  //   clearDayList()
-  //   for (let i = 1; i <= 7; i++) {
-  //     const dayListItem: DayListItem = {
-  //       day: dayListStatic[i % 7],
-  //       date: date.value + i - day.value,
-  //     }
-
-  //     if (i === day.value)
-  //       dayListItem.today = true
-  //     dayList.value.push(dayListItem)
-  //   }
-  // })
-
-  // function clearDayList() {
-  //   dayList.value.length = 0
-  // }
 
   // function updateDay() {
   //   const curDate = new Date()
@@ -93,7 +76,7 @@ export const useTime = defineStore('time', () => {
 
   return {
     date,
-    dayList: dateList,
+    dateList,
     currentDate: currentDateFormatted,
     currentMonthDays,
     nextDay,

@@ -8,12 +8,16 @@ import presetWind from '@unocss/preset-wind'
 import presetAttributify from '@unocss/preset-attributify'
 import presetIcons from '@unocss/preset-icons'
 import { manualChunks } from './build.config'
+import { devPlugin, getReplacer, buildPlugin } from './plugins'
+import optimizer from 'vite-plugin-optimizer'
 
 // https://vitejs.dev/config/
 const config = defineConfig({
   base: process.env.BASE_PATH ?? '/',
 
   plugins: [
+    optimizer(getReplacer()),
+    devPlugin(),
     vue({ reactivityTransform: true }),
     Unocss({
       presets: [
@@ -30,6 +34,7 @@ const config = defineConfig({
   },
   build: {
     rollupOptions: {
+      plugins: [buildPlugin()],
       output: {
         manualChunks,
       },

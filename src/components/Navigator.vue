@@ -14,10 +14,10 @@ const router = useRouter()
     text-gray-5
     justify-between
   >
-    <ul spacey-3 list-none>
+    <ul spacey-6 list-none>
       <li><div i-mdi-clock-outline @click="router.push('/')" /></li>
       <li>
-        <div i-mdi-google-analytics @click="router.push('/statistics')" />
+        <div i-mdi-chart-line @click="router.push('/statistics')" />
       </li>
       <li><div i-mdi-account-outline @click="router.push('/user')" /></li>
       <li><div i-mdi-star-outline @click="router.push('/star')" /></li>

@@ -9,9 +9,7 @@ import { formatDate, getDay } from '~/utils'
 const { currentDate } = toRefs(useTime())
 const { backToToday } = useTime()
 
-const current = computed(() =>
-  getDay(currentDate.value),
-)
+const current = computed(() => getDay(currentDate.value))
 
 const curName = computed(() => {
   const today = new Date()
